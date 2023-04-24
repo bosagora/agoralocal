@@ -1,0 +1,12 @@
+node_modules/
+
+# WebStorm
+.idea/
+
+#Hardhat files
+artifacts/
+cache/
+typechain-types/
+deployments/
+
+chain/

@@ -1,0 +1,409 @@
+version: '3.3'
+services:
+    elboot:
+        container_name: elboot
+        image: bosagora/agora-el-bootnode:v1.0.1
+        restart: always
+        volumes:
+            - ./config/el:/config
+        command:
+            -nodekey=/config/bootkey/boot.key
+            -verbosity=1
+            -addr=:30301
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.11
+
+    el1:
+        container_name: el1
+        image: bosagora/agora-el-node:v1.0.1
+        ports:
+            - "8545:8545"
+        restart: always
+        volumes:
+            - ./chain/node1/el:/data
+            - ./config/el:/config
+        command:
+            --config=/config/config.toml
+            --datadir=/data
+            --syncmode=full
+            --allow-insecure-unlock=true
+            --unlock=0xF85B2dbA83A08DEe6E24E4461E0334e7384896F9
+            --password=/config/private/password.txt
+            --mine=true
+            --miner.etherbase=0xF85B2dbA83A08DEe6E24E4461E0334e7384896F9
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.12
+        depends_on:
+            - elboot
+
+    el2:
+        container_name: el2
+        image: bosagora/agora-el-node:v1.0.1
+        restart: always
+        volumes:
+            - ./chain/node2/el:/data
+            - ./config/el:/config
+        command:
+            --config=/config/config.toml
+            --datadir=/data
+            --syncmode=full
+            --allow-insecure-unlock=true
+            --unlock=0x93BFD12E0050B16D69f752dfd344Ebd174bd3159
+            --password=/config/private/password.txt
+            --mine=true
+            --miner.etherbase=0x93BFD12E0050B16D69f752dfd344Ebd174bd3159
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.13
+        depends_on:
+            - elboot
+            - el1
+
+    el3:
+        container_name: el3
+        image: bosagora/agora-el-node:v1.0.1
+        restart: always
+        volumes:
+            - ./chain/node3/el:/data
+            - ./config/el:/config
+        command:
+            --config=/config/config.toml
+            --datadir=/data
+            --syncmode=full
+            --allow-insecure-unlock=true
+            --unlock=0xb7D44Dc8cbC8119552608E5AB4E9e59a6120Ccf0
+            --password=/config/private/password.txt
+            --mine=true
+            --miner.etherbase=0xb7D44Dc8cbC8119552608E5AB4E9e59a6120Ccf0
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.14
+        depends_on:
+            - elboot
+            - el1
+            - el2
+
+    el4:
+        container_name: el4
+        image: bosagora/agora-el-node:v1.0.1
+        restart: always
+        volumes:
+            - ./chain/node4/el:/data
+            - ./config/el:/config
+        command:
+            --config=/config/config.toml
+            --datadir=/data
+            --syncmode=full
+            --allow-insecure-unlock=true
+            --unlock=0xF051b6ed4cd4D1De4810833048776F835F3c266D
+            --password=/config/private/password.txt
+            --mine=true
+            --miner.etherbase=0xF051b6ed4cd4D1De4810833048776F835F3c266D
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.15
+        depends_on:
+            - elboot
+            - el1
+            - el2
+            - el3
+
+    el5:
+        container_name: el5
+        image: bosagora/agora-el-node:v1.0.1
+        restart: always
+        volumes:
+            - ./chain/node5/el:/data
+            - ./config/el:/config
+        command:
+            --config=/config/config.toml
+            --datadir=/data
+            --syncmode=full
+            --allow-insecure-unlock=true
+            --unlock=0x82d43d4363379E70cc9BE61a8D598f1281Beb6BE
+            --password=/config/private/password.txt
+            --mine=true
+            --miner.etherbase=0x82d43d4363379E70cc9BE61a8D598f1281Beb6BE
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.16
+        depends_on:
+            - elboot
+            - el1
+            - el2
+            - el3
+            - el4
+
+    clboot:
+        container_name: clboot
+        image: bosagora/agora-cl-bootnode:v1.0.3
+        restart: always
+        command:
+            --external-ip 172.21.0.21
+            --fork-version 2F1C0000
+            --private 9dab6d31b7fd636348b29c8c0c8ee3699e1f89bfe06e62c795821156040b969e
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.21
+
+    cl1:
+        container_name: cl1
+        image: bosagora/agora-cl-node:v1.0.3
+        ports:
+            - "3500:3500"
+            - "4000:4000"
+        volumes:
+            - ./chain/node1/cl:/cl
+            - ./chain/node1/el:/el
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --config-file=/config/config.yaml
+            --datadir=/cl
+            --execution-endpoint=/el/geth.ipc
+            --contract-deployment-block=5
+            --accept-terms-of-use
+            --subscribe-all-subnets=true
+            --enable-debug-rpc-endpoints=true
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.22
+        depends_on:
+            - clboot
+            - el1
+
+    cl2:
+        container_name: cl2
+        image: bosagora/agora-cl-node:v1.0.3
+        volumes:
+            - ./chain/node2/cl:/cl
+            - ./chain/node2/el:/el
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --config-file=/config/config.yaml
+            --datadir=/cl
+            --execution-endpoint=/el/geth.ipc
+            --contract-deployment-block=5
+            --accept-terms-of-use
+            --subscribe-all-subnets=true
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.23
+        depends_on:
+            - clboot
+            - el2
+
+    cl3:
+        container_name: cl3
+        image: bosagora/agora-cl-node:v1.0.3
+        volumes:
+            - ./chain/node3/cl:/cl
+            - ./chain/node3/el:/el
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --config-file=/config/config.yaml
+            --datadir=/cl
+            --execution-endpoint=/el/geth.ipc
+            --contract-deployment-block=5
+            --accept-terms-of-use
+            --subscribe-all-subnets=true
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.24
+        depends_on:
+            - clboot
+            - el3
+
+    cl4:
+        container_name: cl4
+        image: bosagora/agora-cl-node:v1.0.3
+        volumes:
+            - ./chain/node4/cl:/cl
+            - ./chain/node4/el:/el
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --config-file=/config/config.yaml
+            --datadir=/cl
+            --execution-endpoint=/el/geth.ipc
+            --contract-deployment-block=5
+            --accept-terms-of-use
+            --subscribe-all-subnets=true
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.25
+        depends_on:
+            - clboot
+            - el4
+
+    cl5:
+        container_name: cl5
+        image: bosagora/agora-cl-node:v1.0.3
+        volumes:
+            - ./chain/node5/cl:/cl
+            - ./chain/node5/el:/el
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --config-file=/config/config.yaml
+            --datadir=/cl
+            --execution-endpoint=/el/geth.ipc
+            --contract-deployment-block=5
+            --accept-terms-of-use
+            # --genesis-beacon-api-url=http://cl1:3500
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.26
+        depends_on:
+            - clboot
+            - el5
+
+    val1:
+        container_name: val1
+        image: bosagora/agora-cl-validator:v1.0.3
+        volumes:
+            - ./chain/node1/cl:/cl
+            - ./wallet/val1:/wallet
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --datadir=/cl
+            --beacon-rpc-gateway-provider=cl1:3500
+            --beacon-rpc-provider=cl1:4000
+            --wallet-dir=/wallet
+            --proposer-settings-file=/config/private/proposer_config.json
+            --wallet-password-file=/config/private/password.txt
+            --accept-terms-of-use
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.31
+        depends_on:
+            - cl1
+
+    val2:
+        container_name: val2
+        image: bosagora/agora-cl-validator:v1.0.3
+        volumes:
+            - ./chain/node2/cl:/cl
+            - ./wallet/val2:/wallet
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --datadir=/cl
+            --beacon-rpc-gateway-provider=cl2:3500
+            --beacon-rpc-provider=cl2:4000
+            --wallet-dir=/wallet
+            --proposer-settings-file=/config/private/proposer_config.json
+            --wallet-password-file=/config/private/password.txt
+            --accept-terms-of-use
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.32
+        depends_on:
+            - cl2
+
+    val3:
+        container_name: val3
+        image: bosagora/agora-cl-validator:v1.0.3
+        volumes:
+            - ./chain/node3/cl:/cl
+            - ./wallet/val3:/wallet
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --datadir=/cl
+            --beacon-rpc-gateway-provider=cl3:3500
+            --beacon-rpc-provider=cl3:4000
+            --wallet-dir=/wallet
+            --proposer-settings-file=/config/private/proposer_config.json
+            --wallet-password-file=/config/private/password.txt
+            --accept-terms-of-use
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.33
+        depends_on:
+            - cl3
+
+    val4:
+        container_name: val4
+        image: bosagora/agora-cl-validator:v1.0.3
+        volumes:
+            - ./chain/node4/cl:/cl
+            - ./wallet/val4:/wallet
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --datadir=/cl
+            --beacon-rpc-gateway-provider=cl4:3500
+            --beacon-rpc-provider=cl4:4000
+            --wallet-dir=/wallet
+            --proposer-settings-file=/config/private/proposer_config.json
+            --wallet-password-file=/config/private/password.txt
+            --accept-terms-of-use
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.34
+        depends_on:
+            - cl4
+
+    val5:
+        container_name: val5
+        image: bosagora/agora-cl-validator:v1.0.3
+        volumes:
+            - ./chain/node5/cl:/cl
+            - ./wallet/val5:/wallet
+            - ./config/cl:/config
+        restart: always
+        command:
+            --chain-config-file=/config/chain-config.yaml
+            --datadir=/cl
+            --beacon-rpc-gateway-provider=cl5:3500
+            --beacon-rpc-provider=cl5:4000
+            --wallet-dir=/wallet
+            --proposer-settings-file=/config/private/proposer_config.json
+            --wallet-password-file=/config/private/password.txt
+            --accept-terms-of-use
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.35
+        depends_on:
+            - cl5
+
+    agorascan:
+        image: bosagora/agora-scan:agora
+        container_name: agorascan
+        ports:
+            - '3333:3333'
+        restart: always
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        volumes:
+            - ./chain/node1/el:/el
+            - ./config/cl:/config
+            - ./config/scan:/app/config
+        networks:
+            default_bridge:
+                ipv4_address: 172.21.0.130
+        depends_on:
+            - el5
+            - cl5
+
+networks:
+    default_bridge:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.21.0.0/16
