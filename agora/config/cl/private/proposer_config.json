@@ -1,0 +1,7 @@
+{
+  "proposer_config": {
+  },
+  "default_config": {
+    "fee_recipient": "0xE7443AbCf9Cb3ef3079cE0371894Bb449b776114"
+  }
+}

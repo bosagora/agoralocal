@@ -1,0 +1,23 @@
+#!/bin/bash
+
+./agora/script.sh stop-db
+sleep 5
+
+./agora/script.sh stop
+sleep 5
+
+./agora/script.sh start-db
+sleep 5
+
+./agora/script.sh init-db
+sleep 5
+
+./agora/script.sh init
+
+./agora/script.sh start
+
+sleep 5
+
+npm run deploy:commons_budeget
+npm run deploy:deposit
+npm run staking

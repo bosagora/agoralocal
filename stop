@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./agora/script.sh stop-db
+
+./agora/script.sh stop

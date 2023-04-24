@@ -1,0 +1,42 @@
+{
+  "name": "agora-localnet-dev-env",
+  "version": "1.0.0",
+  "description": "Local network development environment",
+  "scripts": {
+    "build": "hardhat compile",
+    "deploy": "hardhat deploy --network localhost",
+    "deploy:commons_budeget": "hardhat run scripts/deploy_commons_budget.ts --network localhost",
+    "deploy:deposit": "hardhat run scripts/deploy_deposit.ts --network localhost",
+    "staking": "hardhat run scripts/staking.ts --network localhost"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelKim/agora-localnet-dev-env.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@ethersproject/experimental": "^5.7.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.1",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "@openzeppelin/contracts": "4.8.1",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/node": "^12.20.43",
+    "ethers": "^5.6.9",
+    "hardhat": "^2.12.7",
+    "hardhat-deploy": "^0.9.26",
+    "prettier": "^2.5.1",
+    "prettier-plugin-solidity": "^1.1.1",
+    "ts-node": "^10.5.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typechain": "^8.1.0",
+    "typescript": "^4.5.5",
+    "web3": "^1.9.0"
+  }
+}
