@@ -3,3 +3,13 @@
 ./agora/script.sh stop-db
 
 ./agora/script.sh stop
+
+while true; do
+  case "$1" in
+    -b|--boascan)
+      ./agora/script.sh stop_boascan
+      break;;
+     *)
+      break;;
+  esac
+done

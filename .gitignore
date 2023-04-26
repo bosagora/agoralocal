@@ -10,3 +10,7 @@ typechain-types/
 deployments/
 
 chain/
+
+services/logs/*
+agora/logs/*
+services/redis-data/*

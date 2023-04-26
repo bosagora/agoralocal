@@ -108,6 +108,14 @@ elif [ "$1" = "init-db" ]; then
     chmod 0600 $agora_root/.pgpass
     docker run -it --rm --net=host -v $agora_root/config/scan:/src -v $agora_root/.pgpass:/root/.pgpass postgres:12.0 psql -f /src/tables.sql -d db -h 0.0.0.0 -U agora
 
+elif [ "$1" = "start_boascan" ]; then
+
+    docker-compose -f $agora_root/dc-node-with-boascan.yml up -d
+
+elif [ "$1" = "stop_boascan" ]; then
+
+    docker-compose -f $agora_root/dc-node-with-boascan.yml down
+
 else
 
     color "31" "Process '$1' is not found!"
