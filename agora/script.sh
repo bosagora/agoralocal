@@ -44,6 +44,10 @@ if [ "$1" = "init" ]; then
     mkdir -p $agora_root/chain/node4/el
     mkdir -p $agora_root/chain/node4/cl
 
+    mkdir -p $agora_root/chain/node5
+    mkdir -p $agora_root/chain/node5/el
+    mkdir -p $agora_root/chain/node5/cl
+
     cp -rf $agora_root/config/el/template/node1/* $agora_root/chain/node1/el
     cp -rf $agora_root/config/el/template/node2/* $agora_root/chain/node2/el
     cp -rf $agora_root/config/el/template/node3/* $agora_root/chain/node3/el
@@ -53,6 +57,7 @@ if [ "$1" = "init" ]; then
     docker run -it -v $agora_root/chain/node2/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
     docker run -it -v $agora_root/chain/node3/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
     docker run -it -v $agora_root/chain/node4/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
+    docker run -it -v $agora_root/chain/node5/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
 
     cp -f $agora_root/config/el/nodekey/node1.key $agora_root/chain/node1/el/geth/nodekey
     cp -f $agora_root/config/el/nodekey/node2.key $agora_root/chain/node2/el/geth/nodekey

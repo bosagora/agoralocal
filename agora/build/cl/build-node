@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bazel build //cmd/beacon-chain:beacon-chain --config=release

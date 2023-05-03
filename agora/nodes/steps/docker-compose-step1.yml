@@ -310,9 +310,54 @@ services:
         depends_on:
             - node4-2-cl
 
+    node5-1-el:
+        container_name: node5-1-el
+        image: bosagora/agora-el-node:v1.0.1
+        restart: always
+        volumes:
+            - ../chain/node5/el:/data
+            - ../config/el:/config
+        command:
+            --config=/config/config.toml
+            --datadir=/data
+            --syncmode=full
+        networks:
+            default_bridge:
+                ipv4_address: 172.200.0.61
+        depends_on:
+            - elboot
+            - node1-1-el
+            - node2-1-el
+            - node3-1-el
+            - node4-1-el
+
+    node5-2-cl:
+        container_name: node5-2-cl
+        image: bosagora/ubuntu-bazel:v6.1.0
+        ports:
+            - "22:22"
+        volumes:
+            - ../chain/node5/cl:/cl
+            - ../chain/node5/el:/el
+            - ../config/cl:/config
+            - ../../../agora-cl:/agora-cl
+            - ../build/cl:/build
+            - bazel-cache:/root/.cache
+        stdin_open: true
+        tty: true
+        networks:
+            default_bridge:
+                ipv4_address: 172.200.0.62
+        depends_on:
+            - clboot
+            - node5-1-el
+
 networks:
     default_bridge:
         ipam:
             driver: default
             config:
                 - subnet: 172.200.0.0/16
+
+volumes:
+    bazel-cache:

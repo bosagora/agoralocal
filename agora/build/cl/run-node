@@ -1,0 +1,11 @@
+#!/bin/bash
+
+bazel run //cmd/beacon-chain:beacon-chain --config=release -- \
+  --chain-config-file /config/chain-config.yaml \
+  --config-file /config/config.yaml \
+  --datadir /cl \
+  --execution-endpoint /el/geth.ipc \
+  --contract-deployment-block 5 \
+  --accept-terms-of-use \
+  --force-clear-db \
+  --genesis-beacon-api-url=http://node1-2-cl:3500
