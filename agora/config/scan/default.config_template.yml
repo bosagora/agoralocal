@@ -57,7 +57,7 @@ indexer:
   fullIndexOnStartup: false # Perform a one time full db index on startup
   indexMissingEpochsOnStartup: false # Check for missing epochs and export them after startup
   node:
-    host: "cl1" # Address of the backend node
+    host: "host.docker.internal" # Address of the backend node
     port: "4000" # GRPC port of the Prysm node
     type: "prysm" # can be either prysm or lighthouse
     pageSize: 250 # the amount of entries to fetch per paged rpc call, TODO set to 500

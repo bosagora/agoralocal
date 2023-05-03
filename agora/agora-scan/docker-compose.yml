@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+    agorascan:
+        image: bosagora/agora-scan:agora
+        container_name: agorascan
+        ports:
+            - '3333:3333'
+        restart: always
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        volumes:
+            - ../chain/node1/el:/el
+            - ../config/cl:/config
+            - ../config/scan:/app/config
+        networks:
+            - default_network
+
+networks:
+    default_network:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.23.0.0/16

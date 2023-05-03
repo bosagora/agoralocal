@@ -72,11 +72,11 @@ if [ "$1" = "init" ]; then
 
 elif [ "$1" = "start" ]; then
 
-    docker-compose -f $agora_root/dc-node.yml up -d
+    docker-compose -f $agora_root/nodes/docker-compose.yml up -d
 
 elif [ "$1" = "stop" ]; then
 
-    docker-compose -f $agora_root/dc-node.yml down
+    docker-compose -f $agora_root/nodes/docker-compose.yml down
 
 elif [ "$1" = "attach" ]; then
 
@@ -97,16 +97,24 @@ elif [ "$1" = "import" ]; then
 
 elif [ "$1" = "start-db" ]; then
 
-    docker-compose -f $agora_root/dc-postgres.yml up -d
+    docker-compose -f $agora_root/postgres/docker-compose.yml up -d
 
 elif [ "$1" = "stop-db" ]; then
 
-    docker-compose -f $agora_root/dc-postgres.yml down
+    docker-compose -f $agora_root/postgres/docker-compose.yml down
 
 elif [ "$1" = "init-db" ]; then
 
-    chmod 0600 $agora_root/.pgpass
-    docker run -it --rm --net=host -v $agora_root/config/scan:/src -v $agora_root/.pgpass:/root/.pgpass postgres:12.0 psql -f /src/tables.sql -d db -h 0.0.0.0 -U agora
+    chmod 0600 $agora_root/postgres/.pgpass
+    docker run -it --rm --net=host -v $agora_root/config/scan:/src -v $agora_root/postgres/.pgpass:/root/.pgpass postgres:12.0 psql -f /src/tables.sql -d db -h 0.0.0.0 -U agora
+
+elif [ "$1" = "start-agora-scan" ]; then
+
+    docker-compose -f $agora_root/agora-scan/docker-compose.yml up -d
+
+elif [ "$1" = "stop-agora-scan" ]; then
+
+    docker-compose -f $agora_root/agora-scan/docker-compose.yml down
 
 else
 

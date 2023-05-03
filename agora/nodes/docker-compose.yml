@@ -5,7 +5,7 @@ services:
         image: bosagora/agora-el-bootnode:v1.0.1
         restart: always
         volumes:
-            - ./config/el:/config
+            - ../config/el:/config
         command:
             -nodekey=/config/bootkey/boot.key
             -verbosity=1
@@ -21,8 +21,8 @@ services:
             - "8545:8545"
         restart: always
         volumes:
-            - ./chain/node1/el:/data
-            - ./config/el:/config
+            - ../chain/node1/el:/data
+            - ../config/el:/config
         command:
             --config=/config/config.toml
             --datadir=/data
@@ -43,8 +43,8 @@ services:
         image: bosagora/agora-el-node:v1.0.1
         restart: always
         volumes:
-            - ./chain/node2/el:/data
-            - ./config/el:/config
+            - ../chain/node2/el:/data
+            - ../config/el:/config
         command:
             --config=/config/config.toml
             --datadir=/data
@@ -66,8 +66,8 @@ services:
         image: bosagora/agora-el-node:v1.0.1
         restart: always
         volumes:
-            - ./chain/node3/el:/data
-            - ./config/el:/config
+            - ../chain/node3/el:/data
+            - ../config/el:/config
         command:
             --config=/config/config.toml
             --datadir=/data
@@ -90,8 +90,8 @@ services:
         image: bosagora/agora-el-node:v1.0.1
         restart: always
         volumes:
-            - ./chain/node4/el:/data
-            - ./config/el:/config
+            - ../chain/node4/el:/data
+            - ../config/el:/config
         command:
             --config=/config/config.toml
             --datadir=/data
@@ -115,8 +115,8 @@ services:
         image: bosagora/agora-el-node:v1.0.1
         restart: always
         volumes:
-            - ./chain/node5/el:/data
-            - ./config/el:/config
+            - ../chain/node5/el:/data
+            - ../config/el:/config
         command:
             --config=/config/config.toml
             --datadir=/data
@@ -155,9 +155,9 @@ services:
             - "3500:3500"
             - "4000:4000"
         volumes:
-            - ./chain/node1/cl:/cl
-            - ./chain/node1/el:/el
-            - ./config/cl:/config
+            - ../chain/node1/cl:/cl
+            - ../chain/node1/el:/el
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -179,9 +179,9 @@ services:
         container_name: cl2
         image: bosagora/agora-cl-node:v1.0.3
         volumes:
-            - ./chain/node2/cl:/cl
-            - ./chain/node2/el:/el
-            - ./config/cl:/config
+            - ../chain/node2/cl:/cl
+            - ../chain/node2/el:/el
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -202,9 +202,9 @@ services:
         container_name: cl3
         image: bosagora/agora-cl-node:v1.0.3
         volumes:
-            - ./chain/node3/cl:/cl
-            - ./chain/node3/el:/el
-            - ./config/cl:/config
+            - ../chain/node3/cl:/cl
+            - ../chain/node3/el:/el
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -225,9 +225,9 @@ services:
         container_name: cl4
         image: bosagora/agora-cl-node:v1.0.3
         volumes:
-            - ./chain/node4/cl:/cl
-            - ./chain/node4/el:/el
-            - ./config/cl:/config
+            - ../chain/node4/cl:/cl
+            - ../chain/node4/el:/el
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -248,9 +248,9 @@ services:
         container_name: cl5
         image: bosagora/agora-cl-node:v1.0.3
         volumes:
-            - ./chain/node5/cl:/cl
-            - ./chain/node5/el:/el
-            - ./config/cl:/config
+            - ../chain/node5/cl:/cl
+            - ../chain/node5/el:/el
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -271,9 +271,9 @@ services:
         container_name: val1
         image: bosagora/agora-cl-validator:v1.0.3
         volumes:
-            - ./chain/node1/cl:/cl
-            - ./wallet/val1:/wallet
-            - ./config/cl:/config
+            - ../chain/node1/cl:/cl
+            - ../wallet/val1:/wallet
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -294,9 +294,9 @@ services:
         container_name: val2
         image: bosagora/agora-cl-validator:v1.0.3
         volumes:
-            - ./chain/node2/cl:/cl
-            - ./wallet/val2:/wallet
-            - ./config/cl:/config
+            - ../chain/node2/cl:/cl
+            - ../wallet/val2:/wallet
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -317,9 +317,9 @@ services:
         container_name: val3
         image: bosagora/agora-cl-validator:v1.0.3
         volumes:
-            - ./chain/node3/cl:/cl
-            - ./wallet/val3:/wallet
-            - ./config/cl:/config
+            - ../chain/node3/cl:/cl
+            - ../wallet/val3:/wallet
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -340,9 +340,9 @@ services:
         container_name: val4
         image: bosagora/agora-cl-validator:v1.0.3
         volumes:
-            - ./chain/node4/cl:/cl
-            - ./wallet/val4:/wallet
-            - ./config/cl:/config
+            - ../chain/node4/cl:/cl
+            - ../wallet/val4:/wallet
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -363,9 +363,9 @@ services:
         container_name: val5
         image: bosagora/agora-cl-validator:v1.0.3
         volumes:
-            - ./chain/node5/cl:/cl
-            - ./wallet/val5:/wallet
-            - ./config/cl:/config
+            - ../chain/node5/cl:/cl
+            - ../wallet/val5:/wallet
+            - ../config/cl:/config
         restart: always
         command:
             --chain-config-file=/config/chain-config.yaml
@@ -380,25 +380,6 @@ services:
             default_bridge:
                 ipv4_address: 172.21.0.35
         depends_on:
-            - cl5
-
-    agorascan:
-        image: bosagora/agora-scan:agora
-        container_name: agorascan
-        ports:
-            - '3333:3333'
-        restart: always
-        extra_hosts:
-            - host.docker.internal:host-gateway
-        volumes:
-            - ./chain/node1/el:/el
-            - ./config/cl:/config
-            - ./config/scan:/app/config
-        networks:
-            default_bridge:
-                ipv4_address: 172.21.0.130
-        depends_on:
-            - el5
             - cl5
 
 networks:

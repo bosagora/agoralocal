@@ -15,11 +15,13 @@ services:
         volumes:
             - postgres-db:/postgresql/data
         networks:
-            - postgres-network
+            - default_network
 
 networks:
-    postgres-network:
-        driver: bridge
-
+    default_network:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.22.0.0/16
 volumes:
     postgres-db:

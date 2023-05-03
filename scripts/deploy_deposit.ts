@@ -11,7 +11,7 @@ async function waitForBlock(blockNumber: number): Promise<void> {
             const block = await ethers.provider.getBlock("latest");
             if (oldIdx !== block.number) console.log("block number is ", block.number);
             oldIdx = block.number;
-            if (blockNumber === block.number) {
+            if (blockNumber <= block.number) {
                 resolve();
                 return;
             } else {
