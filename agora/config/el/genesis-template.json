@@ -13,8 +13,8 @@
     "londonBlock": 0,
     "arrowglacierBlock": 0,
     "grayGlacierBlock": 0,
-    "mergeNetsplitBlock": 100,
-    "terminalTotalDifficulty": 230,
+    "mergeNetsplitBlock": REPLACE_NET_SPLIT_BLOCK,
+    "terminalTotalDifficulty": REPLACE_TERMINAL_TOTAL_DIFFICULTY,
     "TerminalTotalDifficultyPassed": false,
     "clique": {
       "period": 14,

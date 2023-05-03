@@ -14,7 +14,12 @@ chain/
 
 agora/adjustment/fork_data.json
 agora/config/cl/chain-config.yaml
+agora/config/cl/chain-config-capella.yaml
 agora/config/scan/default.config.yml
 agora/nodes-simulation/docker-compose.yml
+agora/config/el/genesis.json
+agora/config/el/genesis-shanghai.json
 
 agora-cl/
+
+temp-*

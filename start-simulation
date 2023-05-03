@@ -31,61 +31,47 @@ npm run staking
 ./agora/script.sh start-agora-scan
 
 
+function change_step() {
+  # Fork Shang-hai & Capella
+  docker stop node"$2"-3-val
+  docker rm node"$2"-3-val
+  docker stop node"$2"-2-cl
+  docker rm node"$2"-2-cl
+  docker stop node"$2"-1-el
+  docker rm node"$2"-1-el
+
+  cp -f agora/nodes-simulation/steps/docker-compose-step"$1".yml agora/nodes-simulation/docker-compose.yml
+
+  docker run -it \
+  -v $(pwd)/agora/chain/node"$2"/el:/data \
+  -v $(pwd)/agora/config/el:/config \
+  --name el-node --rm bosagora/agora-el-node:v1.0.2 \
+  --datadir=/data init /config/genesis-shanghai.json
+
+  docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node"$2"-1-el
+  docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node"$2"-2-cl
+  docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node"$2"-3-val
+}
+
+npx hardhat wait-block --title "Step 1, (GENESIS + 0)" --fork GENESIS --offset 0 --network localhost
+
+npx hardhat wait-block --title "Step 1, (BELLATRIX + 0)" --fork BELLATRIX --offset 0 --network localhost
+
 # Step 2
-npx hardhat wait-block --title "Step 2" --fork BELLATRIX --offset 65 --network localhost
-
-docker stop node4-3-val
-docker rm node4-3-val
-docker stop node4-2-cl
-docker rm node4-2-cl
-docker stop node4-1-el
-docker rm node4-1-el
-cp -f agora/nodes-simulation/steps/docker-compose-step2.yml agora/nodes-simulation/docker-compose.yml
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node4-1-el
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node4-2-cl
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node4-3-val
-
+npx hardhat wait-block --title "Step 2, (BELLATRIX + 35)" --fork BELLATRIX --offset 35 --network localhost
+change_step 2 4
 
 # Step 3
-npx hardhat wait-block --title "Step 3" --fork BELLATRIX --offset 70 --network localhost
-
-docker stop node3-3-val
-docker rm node3-3-val
-docker stop node3-2-cl
-docker rm node3-2-cl
-docker stop node3-1-el
-docker rm node3-1-el
-cp -f agora/nodes-simulation/steps/docker-compose-step3.yml agora/nodes-simulation/docker-compose.yml
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node3-1-el
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node3-2-cl
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node3-3-val
-
+npx hardhat wait-block --title "Step 3, (BELLATRIX + 40)" --fork BELLATRIX --offset 40 --network localhost
+change_step 3 3
 
 # Step 4
-npx hardhat wait-block --title "Step 4" --fork BELLATRIX --offset 75 --network localhost
-
-docker stop node2-3-val
-docker rm node2-3-val
-docker stop node2-2-cl
-docker rm node2-2-cl
-docker stop node2-1-el
-docker rm node2-1-el
-cp -f agora/nodes-simulation/steps/docker-compose-step4.yml agora/nodes-simulation/docker-compose.yml
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node2-1-el
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node2-2-cl
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node2-3-val
-
+npx hardhat wait-block --title "Step 4, (BELLATRIX + 45)" --fork BELLATRIX --offset 45 --network localhost
+change_step 4 2
 
 # Step 5
-npx hardhat wait-block --title "Step 5" --fork BELLATRIX --offset 80 --network localhost
+npx hardhat wait-block --title "Step 5, (BELLATRIX + 50)" --fork BELLATRIX --offset 50 --network localhost
+change_step 5 1
 
-docker stop node1-3-val
-docker rm node1-3-val
-docker stop node1-2-cl
-docker rm node1-2-cl
-docker stop node1-1-el
-docker rm node1-1-el
-cp -f agora/nodes-simulation/steps/docker-compose-step5.yml agora/nodes-simulation/docker-compose.yml
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node1-1-el
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node1-2-cl
-docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node1-3-val
+# Step 6
+npx hardhat wait-block --title "Step 6, (CAPELLA + 0)" --fork CAPELLA --offset 0 --network localhost

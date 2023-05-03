@@ -133,7 +133,7 @@ services:
             - ../config/cl:/config
         restart: always
         command:
-            --chain-config-file=/config/chain-config.yaml
+            --chain-config-file=/config/chain-config-capella.yaml
             --config-file=/config/config.yaml
             --datadir=/cl
             --execution-endpoint=/el/geth.ipc
@@ -157,7 +157,7 @@ services:
             - ../config/cl:/config
         restart: always
         command:
-            --chain-config-file=/config/chain-config.yaml
+            --chain-config-file=/config/chain-config-capella.yaml
             --datadir=/cl
             --beacon-rpc-gateway-provider=node2-2-cl:3500
             --beacon-rpc-provider=node2-2-cl:4000
@@ -204,7 +204,7 @@ services:
             - ../config/cl:/config
         restart: always
         command:
-            --chain-config-file=/config/chain-config.yaml
+            --chain-config-file=/config/chain-config-capella.yaml
             --config-file=/config/config.yaml
             --datadir=/cl
             --execution-endpoint=/el/geth.ipc
@@ -228,7 +228,7 @@ services:
             - ../config/cl:/config
         restart: always
         command:
-            --chain-config-file=/config/chain-config.yaml
+            --chain-config-file=/config/chain-config-capella.yaml
             --datadir=/cl
             --beacon-rpc-gateway-provider=node3-2-cl:3500
             --beacon-rpc-provider=node2-2-cl:4000
@@ -276,7 +276,7 @@ services:
             - ../config/cl:/config
         restart: always
         command:
-            --chain-config-file=/config/chain-config.yaml
+            --chain-config-file=/config/chain-config-capella.yaml
             --config-file=/config/config.yaml
             --datadir=/cl
             --execution-endpoint=/el/geth.ipc
@@ -300,7 +300,7 @@ services:
             - ../config/cl:/config
         restart: always
         command:
-            --chain-config-file=/config/chain-config.yaml
+            --chain-config-file=/config/chain-config-capella.yaml
             --datadir=/cl
             --beacon-rpc-gateway-provider=node4-2-cl:3500
             --beacon-rpc-provider=node4-2-cl:4000

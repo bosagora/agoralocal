@@ -25,6 +25,13 @@ fi
 
 if [ "$1" = "init" ]; then
 
+    npx ts-node $agora_root/adjustment/createForkData.ts
+    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/cl/chain-config-template.yaml $agora_root/config/cl/chain-config.yaml
+    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/cl/chain-config-template-capella.yaml $agora_root/config/cl/chain-config-capella.yaml
+    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/el/genesis-template-shanghai.json $agora_root/config/el/genesis-shanghai.json
+    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/el/genesis-template.json $agora_root/config/el/genesis.json
+    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/scan/default.config-template.yml $agora_root/config/scan/default.config.yml
+
     rm -rf $agora_root/chain
     mkdir -p $agora_root/chain
 
@@ -63,10 +70,6 @@ if [ "$1" = "init" ]; then
     cp -f $agora_root/config/el/nodekey/node2.key $agora_root/chain/node2/el/geth/nodekey
     cp -f $agora_root/config/el/nodekey/node3.key $agora_root/chain/node3/el/geth/nodekey
     cp -f $agora_root/config/el/nodekey/node4.key $agora_root/chain/node4/el/geth/nodekey
-
-    npx ts-node $agora_root/adjustment/createForkData.ts
-    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/cl/chain-config_template.yaml $agora_root/config/cl/chain-config.yaml
-    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/scan/default.config_template.yml $agora_root/config/scan/default.config.yml
 
 elif [ "$1" = "start" ]; then
 
