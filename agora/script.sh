@@ -59,9 +59,9 @@ if [ "$1" = "init" ]; then
     cp -f $agora_root/config/el/nodekey/node3.key $agora_root/chain/node3/el/geth/nodekey
     cp -f $agora_root/config/el/nodekey/node4.key $agora_root/chain/node4/el/geth/nodekey
 
-    export GENESIS_TIME_STAMP=$(npx ts-node $agora_root/adjustment/getGenesisTimeStamp.ts)
-    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $GENESIS_TIME_STAMP $agora_root/config/cl/chain-config_template.yaml $agora_root/config/cl/chain-config.yaml
-    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $GENESIS_TIME_STAMP $agora_root/config/scan/default.config_template.yml $agora_root/config/scan/default.config.yml
+    npx ts-node $agora_root/adjustment/createForkData.ts
+    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/cl/chain-config_template.yaml $agora_root/config/cl/chain-config.yaml
+    npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/scan/default.config_template.yml $agora_root/config/scan/default.config.yml
 
 elif [ "$1" = "start" ]; then
 

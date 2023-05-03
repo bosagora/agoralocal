@@ -1,13 +1,14 @@
-import fs from "fs";
+import * as fs from "fs";
 
 async function main() {
     if (process.argv.length < 4) {
         process.abort();
     }
 
-    const value = process.argv[2];
-    const inputFileName = process.argv[3];
-    const outFileFileName = process.argv[4];
+    const fork_data = JSON.parse(fs.readFileSync("agora/adjustment/fork_data.json", "utf-8"));
+    const value = fork_data.GENESIS_TIME;
+    const inputFileName = process.argv[2];
+    const outFileFileName = process.argv[3];
 
     console.log(`Value: ${value}`);
     console.log(`Input FileName : ${inputFileName}`);

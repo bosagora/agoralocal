@@ -10,3 +10,6 @@ typechain-types/
 deployments/
 
 chain/
+
+
+agora/adjustment/fork_data.json
