@@ -7,7 +7,9 @@
     "deploy": "hardhat deploy --network localhost",
     "deploy:commons_budeget": "hardhat run scripts/deploy_commons_budget.ts --network localhost",
     "deploy:deposit": "hardhat run scripts/deploy_deposit.ts --network localhost",
-    "staking": "hardhat run scripts/staking.ts --network localhost"
+    "staking": "hardhat run scripts/staking.ts --network localhost",
+    "check:commons-budget": "npx hardhat run scripts/check/commons_budget.ts --network localhost",
+    "check:validator-balance": "npx hardhat run scripts/check/validator_balance.ts --network localhost"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "@typechain/ethers-v5": "^10.1.0",
     "@typechain/hardhat": "^6.1.2",
     "@types/node": "^12.20.43",
+    "@types/urijs": "^1.19.19",
     "dotenv": "^16.0.3",
     "ethers": "^5.6.9",
     "hardhat": "^2.12.7",
@@ -40,6 +43,9 @@
     "web3": "^1.9.0"
   },
   "dependencies": {
-    "beautify": "^0.0.8"
+    "axios": "^1.4.0",
+    "beautify": "^0.0.8",
+    "parse-prometheus-text-format": "^1.1.1",
+    "urijs": "^1.19.11"
   }
 }

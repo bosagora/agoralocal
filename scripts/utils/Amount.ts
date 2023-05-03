@@ -101,3 +101,16 @@ export class BOACoin extends Amount {
         return Amount.make(value, BOACoin.DECIMAL);
     }
 }
+
+/**
+ * Used in the amount of BOA coin in BizNet
+ */
+export class GBOACoin extends Amount {
+    public static DECIMAL = 9;
+    constructor(value: BigNumber) {
+        super(value, GBOACoin.DECIMAL);
+    }
+    public static make(value: string | number): BOACoin {
+        return Amount.make(value, GBOACoin.DECIMAL);
+    }
+}

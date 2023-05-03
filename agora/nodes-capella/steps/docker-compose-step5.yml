@@ -51,6 +51,7 @@ services:
         ports:
             - "3500:3500"
             - "4000:4000"
+            - "8080:8080"
         volumes:
             - ../chain/node1/cl:/cl
             - ../chain/node1/el:/el
@@ -66,6 +67,7 @@ services:
             --subscribe-all-subnets=true
             --disable-peer-scorer=true
             --enable-debug-rpc-endpoints=true
+            --monitoring-port=8080
         networks:
             default_network:
                 ipv4_address: 172.200.0.22
