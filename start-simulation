@@ -17,7 +17,10 @@ sleep 5
 
 ./agora/script.sh init
 
-./agora/script.sh start 1
+echo "[Step 1]"
+
+cp -f agora/nodes-simulation/steps/docker-compose-step1.yml agora/nodes-simulation/docker-compose.yml
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d
 
 sleep 5
 
@@ -29,7 +32,7 @@ npm run staking
 
 
 # Step 2
-npx hardhat wait-block --title "Step 2" --fork BELLATRIX --offset 32 --network localhost
+npx hardhat wait-block --title "Step 2" --fork BELLATRIX --offset 65 --network localhost
 
 docker stop node4-3-val
 docker rm node4-3-val
@@ -37,11 +40,14 @@ docker stop node4-2-cl
 docker rm node4-2-cl
 docker stop node4-1-el
 docker rm node4-1-el
-./agora/script.sh start 2
+cp -f agora/nodes-simulation/steps/docker-compose-step2.yml agora/nodes-simulation/docker-compose.yml
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node4-1-el
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node4-2-cl
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node4-3-val
 
 
 # Step 3
-npx hardhat wait-block -title "Step 3" --fork BELLATRIX --offset 64 --network localhost
+npx hardhat wait-block --title "Step 3" --fork BELLATRIX --offset 70 --network localhost
 
 docker stop node3-3-val
 docker rm node3-3-val
@@ -49,11 +55,14 @@ docker stop node3-2-cl
 docker rm node3-2-cl
 docker stop node3-1-el
 docker rm node3-1-el
-./agora/script.sh start 3
+cp -f agora/nodes-simulation/steps/docker-compose-step3.yml agora/nodes-simulation/docker-compose.yml
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node3-1-el
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node3-2-cl
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node3-3-val
 
 
 # Step 4
-npx hardhat wait-block -title "Step 4" --fork BELLATRIX --offset 96 --network localhost
+npx hardhat wait-block --title "Step 4" --fork BELLATRIX --offset 75 --network localhost
 
 docker stop node2-3-val
 docker rm node2-3-val
@@ -61,5 +70,22 @@ docker stop node2-2-cl
 docker rm node2-2-cl
 docker stop node2-1-el
 docker rm node2-1-el
-./agora/script.sh start 4
+cp -f agora/nodes-simulation/steps/docker-compose-step4.yml agora/nodes-simulation/docker-compose.yml
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node2-1-el
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node2-2-cl
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node2-3-val
 
+
+# Step 5
+npx hardhat wait-block --title "Step 5" --fork BELLATRIX --offset 80 --network localhost
+
+docker stop node1-3-val
+docker rm node1-3-val
+docker stop node1-2-cl
+docker rm node1-2-cl
+docker stop node1-1-el
+docker rm node1-1-el
+cp -f agora/nodes-simulation/steps/docker-compose-step5.yml agora/nodes-simulation/docker-compose.yml
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node1-1-el
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node1-2-cl
+docker-compose -f $(pwd)/agora/nodes-simulation/docker-compose.yml up -d node1-3-val

@@ -53,11 +53,11 @@ if [ "$1" = "init" ]; then
     cp -rf $agora_root/config/el/template/node3/* $agora_root/chain/node3/el
     cp -rf $agora_root/config/el/template/node4/* $agora_root/chain/node4/el
 
-    docker run -it -v $agora_root/chain/node1/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
-    docker run -it -v $agora_root/chain/node2/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
-    docker run -it -v $agora_root/chain/node3/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
-    docker run -it -v $agora_root/chain/node4/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
-    docker run -it -v $agora_root/chain/node5/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
+    docker run -it -v $agora_root/chain/node1/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
+    docker run -it -v $agora_root/chain/node2/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
+    docker run -it -v $agora_root/chain/node3/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
+    docker run -it -v $agora_root/chain/node4/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
+    docker run -it -v $agora_root/chain/node5/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
 
     cp -f $agora_root/config/el/nodekey/node1.key $agora_root/chain/node1/el/geth/nodekey
     cp -f $agora_root/config/el/nodekey/node2.key $agora_root/chain/node2/el/geth/nodekey
@@ -69,19 +69,6 @@ if [ "$1" = "init" ]; then
     npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/scan/default.config_template.yml $agora_root/config/scan/default.config.yml
 
 elif [ "$1" = "start" ]; then
-    if [ "$#" -lt 2 ]; then
-        cp -f $agora_root/nodes/steps/docker-compose-step1.yml $agora_root/nodes/docker-compose.yml
-    elif [ "$2" = "1" ]; then
-        cp -f $agora_root/nodes/steps/docker-compose-step1.yml $agora_root/nodes/docker-compose.yml
-    elif [ "$2" = "2" ]; then
-        cp -f $agora_root/nodes/steps/docker-compose-step2.yml $agora_root/nodes/docker-compose.yml
-    elif [ "$2" = "3" ]; then
-        cp -f $agora_root/nodes/steps/docker-compose-step3.yml $agora_root/nodes/docker-compose.yml
-    elif [ "$2" = "4" ]; then
-        cp -f $agora_root/nodes/steps/docker-compose-step4.yml $agora_root/nodes/docker-compose.yml
-    else
-        cp -f $agora_root/nodes/steps/docker-compose-step1.yml $agora_root/nodes/docker-compose.yml
-    fi
 
     docker-compose -f $agora_root/nodes/docker-compose.yml up -d
 
@@ -89,9 +76,13 @@ elif [ "$1" = "stop" ]; then
 
     docker-compose -f $agora_root/nodes/docker-compose.yml down
 
+    if [ -f "$agora_root/nodes-simulation/docker-compose.yml" ]; then
+        docker-compose -f $agora_root/nodes-simulation/docker-compose.yml down
+    fi
+
 elif [ "$1" = "attach" ]; then
 
-    docker run -it -v $agora_root/chain/node1/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data attach /data/geth.ipc
+    docker run -it -v $agora_root/chain/node1/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data attach /data/geth.ipc
 
 elif [ "$1" = "import" ]; then
 

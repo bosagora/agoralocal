@@ -15,3 +15,6 @@ chain/
 agora/adjustment/fork_data.json
 agora/config/cl/chain-config.yaml
 agora/config/scan/default.config.yml
+agora/nodes-simulation/docker-compose.yml
+
+agora-cl/
