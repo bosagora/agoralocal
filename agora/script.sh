@@ -85,7 +85,7 @@ elif [ "$1" = "stop" ]; then
 
 elif [ "$1" = "attach" ]; then
 
-    docker run -it -v $agora_root/chain/node1/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data attach /data/geth.ipc
+    docker run -it -v $agora_root/chain/node1/el:/data -v $agora_root/config/el:/config --name el-node-attach --rm bosagora/agora-el-node:v1.0.2 --datadir=/data attach /data/geth.ipc
 
 elif [ "$1" = "import" ]; then
 
