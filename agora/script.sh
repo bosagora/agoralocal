@@ -64,6 +64,19 @@ if [ "$1" = "init" ]; then
     npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $agora_root/config/scan/default.config_template.yml $agora_root/config/scan/default.config.yml
 
 elif [ "$1" = "start" ]; then
+    if [ "$#" -lt 2 ]; then
+        cp -f $agora_root/nodes/steps/docker-compose-step1.yml $agora_root/nodes/docker-compose.yml
+    elif [ "$2" = "1" ]; then
+        cp -f $agora_root/nodes/steps/docker-compose-step1.yml $agora_root/nodes/docker-compose.yml
+    elif [ "$2" = "2" ]; then
+        cp -f $agora_root/nodes/steps/docker-compose-step2.yml $agora_root/nodes/docker-compose.yml
+    elif [ "$2" = "3" ]; then
+        cp -f $agora_root/nodes/steps/docker-compose-step3.yml $agora_root/nodes/docker-compose.yml
+    elif [ "$2" = "4" ]; then
+        cp -f $agora_root/nodes/steps/docker-compose-step4.yml $agora_root/nodes/docker-compose.yml
+    else
+        cp -f $agora_root/nodes/steps/docker-compose-step1.yml $agora_root/nodes/docker-compose.yml
+    fi
 
     docker-compose -f $agora_root/nodes/docker-compose.yml up -d
 

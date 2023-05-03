@@ -1,0 +1,65 @@
+#!/bin/bash
+
+./agora/script.sh stop-agora-scan
+sleep 5
+
+./agora/script.sh stop-db
+sleep 5
+
+./agora/script.sh stop
+sleep 5
+
+./agora/script.sh start-db
+sleep 5
+
+./agora/script.sh init-db
+sleep 5
+
+./agora/script.sh init
+
+./agora/script.sh start 1
+
+sleep 5
+
+npm run deploy:commons_budeget
+npm run deploy:deposit
+npm run staking
+
+./agora/script.sh start-agora-scan
+
+
+# Step 2
+npx hardhat wait-block --title "Step 2" --fork BELLATRIX --offset 32 --network localhost
+
+docker stop node4-3-val
+docker rm node4-3-val
+docker stop node4-2-cl
+docker rm node4-2-cl
+docker stop node4-1-el
+docker rm node4-1-el
+./agora/script.sh start 2
+
+
+# Step 3
+npx hardhat wait-block -title "Step 3" --fork BELLATRIX --offset 64 --network localhost
+
+docker stop node3-3-val
+docker rm node3-3-val
+docker stop node3-2-cl
+docker rm node3-2-cl
+docker stop node3-1-el
+docker rm node3-1-el
+./agora/script.sh start 3
+
+
+# Step 4
+npx hardhat wait-block -title "Step 4" --fork BELLATRIX --offset 96 --network localhost
+
+docker stop node2-3-val
+docker rm node2-3-val
+docker stop node2-2-cl
+docker rm node2-2-cl
+docker stop node2-1-el
+docker rm node2-1-el
+./agora/script.sh start 4
+
