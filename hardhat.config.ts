@@ -2,7 +2,6 @@ import fs from "fs";
 
 import "@nomiclabs/hardhat-ethers";
 import "@typechain/hardhat";
-import "hardhat-deploy";
 // tslint:disable-next-line:no-submodule-imports
 import { HardhatUserConfig, task } from "hardhat/config";
 // tslint:disable-next-line:no-submodule-imports
@@ -93,24 +92,18 @@ const config: HardhatUserConfig = {
             throwOnCallFailures: true,
             blockGasLimit: 3000000000, // really high to test some things that are only possible with a higher block gas limit
             gasPrice: 8000000000,
-            deploy: ["./deploy"],
         },
         localhost: {
             url: "http://localhost:8545",
             chainId: 1337,
             accounts: getAccounts(),
-            deploy: ["./deploy"],
         },
-    },
-    namedAccounts: {
-        deployer: 0,
     },
     paths: {
         sources: "./contracts",
         tests: "./test",
         cache: "./cache",
         artifacts: "./artifacts",
-        deploy: "./deploy",
     },
 };
 
