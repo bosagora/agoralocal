@@ -44,27 +44,20 @@ if [ "$1" = "init" ]; then
     mkdir -p $agora_root/chain/node4/el
     mkdir -p $agora_root/chain/node4/cl
 
-    mkdir -p $agora_root/chain/node5
-    mkdir -p $agora_root/chain/node5/el
-    mkdir -p $agora_root/chain/node5/cl
-
     cp -rf $agora_root/config/el/template/node1/* $agora_root/chain/node1/el
     cp -rf $agora_root/config/el/template/node2/* $agora_root/chain/node2/el
     cp -rf $agora_root/config/el/template/node3/* $agora_root/chain/node3/el
     cp -rf $agora_root/config/el/template/node4/* $agora_root/chain/node4/el
-    cp -rf $agora_root/config/el/template/node5/* $agora_root/chain/node5/el
 
     docker run -it -v $agora_root/chain/node1/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
     docker run -it -v $agora_root/chain/node2/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
     docker run -it -v $agora_root/chain/node3/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
     docker run -it -v $agora_root/chain/node4/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
-    docker run -it -v $agora_root/chain/node5/el:/data -v $agora_root/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.1 --datadir=/data init /config/genesis.json
 
     cp -f $agora_root/config/el/nodekey/node1.key $agora_root/chain/node1/el/geth/nodekey
     cp -f $agora_root/config/el/nodekey/node2.key $agora_root/chain/node2/el/geth/nodekey
     cp -f $agora_root/config/el/nodekey/node3.key $agora_root/chain/node3/el/geth/nodekey
     cp -f $agora_root/config/el/nodekey/node4.key $agora_root/chain/node4/el/geth/nodekey
-    cp -f $agora_root/config/el/nodekey/node5.key $agora_root/chain/node5/el/geth/nodekey
 
     export GENESIS_TIME_STAMP=$(npx ts-node $agora_root/adjustment/getGenesisTimeStamp.ts)
     npx ts-node $agora_root/adjustment/replaceGenesisTimeStamp.ts $GENESIS_TIME_STAMP $agora_root/config/cl/chain-config_template.yaml $agora_root/config/cl/chain-config.yaml
