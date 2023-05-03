@@ -16,7 +16,7 @@ services:
 
   clboot:
     container_name: clboot
-    image: bosagora/agora-cl-bootnode:v1.0.3
+    image: bosagora/agora-cl-bootnode:agora-v4.0.3
     restart: always
     command:
       --external-ip 172.200.0.12

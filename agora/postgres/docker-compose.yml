@@ -1,25 +1,25 @@
 version: '3.3'
 services:
-    postgres:
-        image: postgres:12.0
-        container_name: postgres
-        ports:
-            - '5432:5432'
-        restart: always
-        environment:
-            POSTGRES_PASSWORD: 12345678
-            POSTGRES_USER: agora
-            POSTGRES_DB: db
-            PGDATA: /postgresql/data
-            POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
-        volumes:
-            - postgres-db:/postgresql/data
-        networks:
-            - default_network
+  postgres:
+    image: postgres:12.0
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_USER: agora
+      POSTGRES_DB: db
+      PGDATA: /postgresql/data
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
+    volumes:
+      - postgres-db:/postgresql/data
+    networks:
+      - default_network
 
 networks:
-    default_network:
-        driver: bridge
+  default_network:
+    driver: bridge
 
 volumes:
-    postgres-db:
+  postgres-db:
