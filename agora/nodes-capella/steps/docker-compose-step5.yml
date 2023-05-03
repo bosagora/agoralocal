@@ -39,11 +39,6 @@ services:
             --config=/config/config.toml
             --datadir=/data
             --syncmode=full
-            --allow-insecure-unlock=true
-            --unlock=0xF85B2dbA83A08DEe6E24E4461E0334e7384896F9
-            --password=/config/private/password.txt
-            --mine=true
-            --miner.etherbase=0xF85B2dbA83A08DEe6E24E4461E0334e7384896F9
         networks:
             default_network:
                 ipv4_address: 172.200.0.21
@@ -112,11 +107,6 @@ services:
             --config=/config/config.toml
             --datadir=/data
             --syncmode=full
-            --allow-insecure-unlock=true
-            --unlock=0x93BFD12E0050B16D69f752dfd344Ebd174bd3159
-            --password=/config/private/password.txt
-            --mine=true
-            --miner.etherbase=0x93BFD12E0050B16D69f752dfd344Ebd174bd3159
         networks:
             default_network:
                 ipv4_address: 172.200.0.31
@@ -182,11 +172,6 @@ services:
             --config=/config/config.toml
             --datadir=/data
             --syncmode=full
-            --allow-insecure-unlock=true
-            --unlock=0xb7D44Dc8cbC8119552608E5AB4E9e59a6120Ccf0
-            --password=/config/private/password.txt
-            --mine=true
-            --miner.etherbase=0xb7D44Dc8cbC8119552608E5AB4E9e59a6120Ccf0
         networks:
             default_network:
                 ipv4_address: 172.200.0.41
@@ -253,11 +238,6 @@ services:
             --config=/config/config.toml
             --datadir=/data
             --syncmode=full
-            --allow-insecure-unlock=true
-            --unlock=0xF051b6ed4cd4D1De4810833048776F835F3c266D
-            --password=/config/private/password.txt
-            --mine=true
-            --miner.etherbase=0xF051b6ed4cd4D1De4810833048776F835F3c266D
         networks:
             default_network:
                 ipv4_address: 172.200.0.51

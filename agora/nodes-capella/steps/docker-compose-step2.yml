@@ -253,11 +253,6 @@ services:
       --config=/config/config.toml
       --datadir=/data
       --syncmode=full
-      --allow-insecure-unlock=true
-      --unlock=0xF051b6ed4cd4D1De4810833048776F835F3c266D
-      --password=/config/private/password.txt
-      --mine=true
-      --miner.etherbase=0xF051b6ed4cd4D1De4810833048776F835F3c266D
     networks:
       default_network:
         ipv4_address: 172.200.0.51
