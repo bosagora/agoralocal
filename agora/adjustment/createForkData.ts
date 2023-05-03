@@ -1,8 +1,14 @@
+import * as dotenv from "dotenv";
 import * as fs from "fs";
+
 // tslint:disable-next-line:no-var-requires
 const beautify = require("beautify");
 
+dotenv.config();
+
 interface IForkData {
+    SECONDS_PER_BLOCK: number;
+    SECONDS_PER_SLOT: number;
     GENESIS_TIME: number;
     GENESIS_EPOCH: number;
     GENESIS_SLOT: number;
@@ -26,19 +32,22 @@ interface IForkData {
     SHANGHAI_BLOCK_NUMBER: number;
 }
 
-const genesisBlockNumber = 25;
+const block_speed = process.env.BLOCK_SPEED || "SLOW";
 const slotPerEpoch = 32;
-const secondsPerSlot = 12;
-const secondsPerBlock = 14;
+const secondsPerSlot = block_speed === "FAST" ? 5 : 12;
+const secondsPerBlock = block_speed === "FAST" ? 5 : 14;
+const genesisBlockNumber = block_speed === "FAST" ? 60 : 27;
 const timestamp = Math.floor(new Date().getTime() / 1000) + secondsPerBlock * genesisBlockNumber;
 // tslint:disable-next-line:no-object-literal-type-assertion
 const forkData: IForkData = {} as IForkData;
 
+forkData.SECONDS_PER_BLOCK = secondsPerBlock;
+forkData.SECONDS_PER_SLOT = secondsPerSlot;
 forkData.GENESIS_EPOCH = 0;
-forkData.ALTAIR_EPOCH = 2;
-forkData.BELLATRIX_EPOCH = 3;
-forkData.CAPELLA_EPOCH = 5;
-forkData.SHANGHAI_EPOCH = 5;
+forkData.ALTAIR_EPOCH = 1;
+forkData.BELLATRIX_EPOCH = 2;
+forkData.CAPELLA_EPOCH = block_speed === "FAST" ? 5 : 4;
+forkData.SHANGHAI_EPOCH = block_speed === "FAST" ? 5 : 4;
 
 forkData.GENESIS_SLOT = forkData.GENESIS_EPOCH * slotPerEpoch;
 forkData.ALTAIR_SLOT = forkData.ALTAIR_EPOCH * slotPerEpoch;

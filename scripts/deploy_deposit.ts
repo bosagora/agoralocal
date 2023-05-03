@@ -23,13 +23,13 @@ async function waitForBlock(blockNumber: number): Promise<void> {
 }
 
 async function main() {
-    console.log(`\nWaiting for block number 5.`);
+    console.log(`\nWaiting for block number 7.`);
 
     const accounts: { address: string; privateKey: string }[] = JSON.parse(
         fs.readFileSync("./agora/config/el/accounts.json", "utf-8")
     );
 
-    await waitForBlock(4);
+    await waitForBlock(7);
     console.log(`\nDeploying AgoraDepositContract.`);
     const deployer = accounts[0].address;
     const signer = new NonceManager(new GasPriceManager(ethers.provider.getSigner(deployer)));

@@ -66,7 +66,7 @@ services:
       --config-file=/config/config.yaml
       --datadir=/cl
       --execution-endpoint=/el/geth.ipc
-      --contract-deployment-block=5
+      --contract-deployment-block=8
       --accept-terms-of-use
       --subscribe-all-subnets=true
       --disable-peer-scorer=true
@@ -137,7 +137,7 @@ services:
       --config-file=/config/config.yaml
       --datadir=/cl
       --execution-endpoint=/el/geth.ipc
-      --contract-deployment-block=5
+      --contract-deployment-block=8
       --accept-terms-of-use
       --subscribe-all-subnets=true
       --disable-peer-scorer=true
@@ -208,7 +208,7 @@ services:
       --config-file=/config/config.yaml
       --datadir=/cl
       --execution-endpoint=/el/geth.ipc
-      --contract-deployment-block=5
+      --contract-deployment-block=8
       --accept-terms-of-use
       --subscribe-all-subnets=true
       --disable-peer-scorer=true
@@ -280,7 +280,7 @@ services:
       --config-file=/config/config.yaml
       --datadir=/cl
       --execution-endpoint=/el/geth.ipc
-      --contract-deployment-block=5
+      --contract-deployment-block=8
       --accept-terms-of-use
       --subscribe-all-subnets=true
       --disable-peer-scorer=true

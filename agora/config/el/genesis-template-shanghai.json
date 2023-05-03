@@ -17,7 +17,7 @@
     "terminalTotalDifficulty": REPLACE_TERMINAL_TOTAL_DIFFICULTY,
     "TerminalTotalDifficultyPassed": true,
     "clique": {
-      "period": 14,
+      "period": REPLACE_SECONDS_PER_BLOCK,
       "epoch": 30000
     },
     "bosagoraBlock": 100,

@@ -63,4 +63,4 @@ indexer:
     pageSize: 250 # the amount of entries to fetch per paged rpc call, TODO set to 500
   eth1Endpoint: "/el/geth.ipc"
   eth1DepositContractAddress: "0x4Ca91738C7cD24895467c6d550D96BE8dC4b33AA"
-  eth1DepositContractFirstBlock: 5
+  eth1DepositContractFirstBlock: 8

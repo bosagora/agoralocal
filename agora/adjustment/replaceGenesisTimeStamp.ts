@@ -14,6 +14,9 @@ async function main() {
 
     try {
         let contents = fs.readFileSync(inputFileName, "utf-8");
+        contents = contents.replace(/REPLACE_SECONDS_PER_BLOCK/g, fork_data.SECONDS_PER_BLOCK);
+        contents = contents.replace(/REPLACE_SECONDS_PER_SLOT/g, fork_data.SECONDS_PER_SLOT);
+
         contents = contents.replace(/REPLACE_GENESIS_TIME_STAMP/g, fork_data.GENESIS_TIME);
         contents = contents.replace(/REPLACE_CAPELLA_TIME_STAMP/g, fork_data.CAPELLA_TIME);
         contents = contents.replace(/REPLACE_SHANGHAI_TIME_STAMP/g, fork_data.SHANGHAI_TIME);

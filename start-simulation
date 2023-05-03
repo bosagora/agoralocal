@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -f .env ]; then
+  export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)
+fi
+
 ./agora/script.sh stop-agora-scan
 sleep 5
 
@@ -62,15 +66,27 @@ npx hardhat wait-block --title "Step 2, (BELLATRIX + 35)" --fork BELLATRIX --off
 change_step 2 4
 
 # Step 3
-npx hardhat wait-block --title "Step 3, (BELLATRIX + 40)" --fork BELLATRIX --offset 40 --network localhost
+if [ "$BLOCK_SPEED" = "FAST" ]; then
+  npx hardhat wait-block --title "Step 3, (BELLATRIX + 50)" --fork BELLATRIX --offset 50 --network localhost
+else
+  npx hardhat wait-block --title "Step 3, (BELLATRIX + 40)" --fork BELLATRIX --offset 40 --network localhost
+fi
 change_step 3 3
 
 # Step 4
-npx hardhat wait-block --title "Step 4, (BELLATRIX + 45)" --fork BELLATRIX --offset 45 --network localhost
+if [ "$BLOCK_SPEED" = "FAST" ]; then
+  npx hardhat wait-block --title "Step 4, (BELLATRIX + 65)" --fork BELLATRIX --offset 65 --network localhost
+else
+  npx hardhat wait-block --title "Step 4, (BELLATRIX + 45)" --fork BELLATRIX --offset 45 --network localhost
+fi
 change_step 4 2
 
 # Step 5
-npx hardhat wait-block --title "Step 5, (BELLATRIX + 50)" --fork BELLATRIX --offset 50 --network localhost
+if [ "$BLOCK_SPEED" = "FAST" ]; then
+  npx hardhat wait-block --title "Step 5, (BELLATRIX + 80)" --fork BELLATRIX --offset 80 --network localhost
+else
+  npx hardhat wait-block --title "Step 5, (BELLATRIX + 50)" --fork BELLATRIX --offset 50 --network localhost
+fi
 change_step 5 1
 
 # Step 6

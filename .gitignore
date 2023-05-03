@@ -23,3 +23,5 @@ agora/config/el/genesis-shanghai.json
 agora-cl/
 
 temp-*
+
+.env
