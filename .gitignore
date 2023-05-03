@@ -13,11 +13,11 @@ chain/
 
 
 agora/adjustment/fork_data.json
-agora/config/cl/chain-config.yaml
+agora/config/cl/chain-config-bellatrix.yaml
 agora/config/cl/chain-config-capella.yaml
 agora/config/scan/default.config.yml
-agora/nodes-simulation/docker-compose.yml
-agora/config/el/genesis.json
+agora/nodes-capella/docker-compose.yml
+agora/config/el/genesis-merge.json
 agora/config/el/genesis-shanghai.json
 
 agora-cl/

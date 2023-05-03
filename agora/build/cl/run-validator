@@ -1,7 +1,7 @@
 #!/bin/bash
 
 bazel run //cmd/validator:validator --config=release -- \
-  --chain-config-file /config/chain-config.yaml \
+  --chain-config-file /config/chain-config-capella.yaml \
   --datadir /cl \
   --beacon-rpc-gateway-provider node5-2-cl:3500 \
   --beacon-rpc-provider node5-2-cl:4000 \

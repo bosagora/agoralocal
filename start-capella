@@ -23,8 +23,8 @@ sleep 5
 
 echo "[Step 1]"
 
-cp -f agora/nodes-simulation/steps/docker-compose-step1.yml agora/nodes-simulation/docker-compose.yml
-docker-compose -f "$(pwd)"/agora/nodes-simulation/docker-compose.yml up -d
+cp -f agora/nodes-capella/steps/docker-compose-step1.yml agora/nodes-capella/docker-compose.yml
+docker-compose -f "$(pwd)"/agora/nodes-capella/docker-compose.yml up -d
 
 sleep 5
 
@@ -44,7 +44,7 @@ function change_step() {
   docker stop node"$2"-1-el
   docker rm node"$2"-1-el
 
-  cp -f agora/nodes-simulation/steps/docker-compose-step"$1".yml agora/nodes-simulation/docker-compose.yml
+  cp -f agora/nodes-capella/steps/docker-compose-step"$1".yml agora/nodes-capella/docker-compose.yml
 
   docker run -it \
   -v "$(pwd)"/agora/chain/node"$2"/el:/data \
@@ -52,9 +52,9 @@ function change_step() {
   --name el-node --rm bosagora/agora-el-node:v1.0.2 \
   --datadir=/data init /config/genesis-shanghai.json
 
-  docker-compose -f "$(pwd)"/agora/nodes-simulation/docker-compose.yml up -d node"$2"-1-el
-  docker-compose -f "$(pwd)"/agora/nodes-simulation/docker-compose.yml up -d node"$2"-2-cl
-  docker-compose -f "$(pwd)"/agora/nodes-simulation/docker-compose.yml up -d node"$2"-3-val
+  docker-compose -f "$(pwd)"/agora/nodes-capella/docker-compose.yml up -d node"$2"-1-el
+  docker-compose -f "$(pwd)"/agora/nodes-capella/docker-compose.yml up -d node"$2"-2-cl
+  docker-compose -f "$(pwd)"/agora/nodes-capella/docker-compose.yml up -d node"$2"-3-val
 }
 
 npx hardhat wait-block --title "Step 1, (GENESIS + 0)" --fork GENESIS --offset 0 --network localhost

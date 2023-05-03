@@ -26,10 +26,10 @@ fi
 if [ "$1" = "init" ]; then
 
     npx ts-node "$agora_root"/adjustment/createForkData.ts
-    npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/cl/chain-config-template.yaml "$agora_root"/config/cl/chain-config.yaml
+    npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/cl/chain-config-template-bellatrix.yaml "$agora_root"/config/cl/chain-config-bellatrix.yaml
     npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/cl/chain-config-template-capella.yaml "$agora_root"/config/cl/chain-config-capella.yaml
     npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/el/genesis-template-shanghai.json "$agora_root"/config/el/genesis-shanghai.json
-    npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/el/genesis-template.json "$agora_root"/config/el/genesis.json
+    npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/el/genesis-template-merge.json "$agora_root"/config/el/genesis-merge.json
     npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/scan/default.config-template.yml "$agora_root"/config/scan/default.config.yml
 
     rm -rf "$agora_root"/chain
@@ -60,11 +60,11 @@ if [ "$1" = "init" ]; then
     cp -rf "$agora_root"/config/el/template/node3/* "$agora_root"/chain/node3/el
     cp -rf "$agora_root"/config/el/template/node4/* "$agora_root"/chain/node4/el
 
-    docker run -it -v "$agora_root"/chain/node1/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
-    docker run -it -v "$agora_root"/chain/node2/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
-    docker run -it -v "$agora_root"/chain/node3/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
-    docker run -it -v "$agora_root"/chain/node4/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
-    docker run -it -v "$agora_root"/chain/node5/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis.json
+    docker run -it -v "$agora_root"/chain/node1/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node2/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node3/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node4/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node5/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
 
     cp -f "$agora_root"/config/el/nodekey/node1.key "$agora_root"/chain/node1/el/geth/nodekey
     cp -f "$agora_root"/config/el/nodekey/node2.key "$agora_root"/chain/node2/el/geth/nodekey
@@ -73,14 +73,14 @@ if [ "$1" = "init" ]; then
 
 elif [ "$1" = "start" ]; then
 
-    docker-compose -f "$agora_root"/nodes/docker-compose.yml up -d
+    docker-compose -f "$agora_root"/nodes-bellatrix/docker-compose.yml up -d
 
 elif [ "$1" = "stop" ]; then
 
-    docker-compose -f "$agora_root"/nodes/docker-compose.yml down
+    docker-compose -f "$agora_root"/nodes-bellatrix/docker-compose.yml down
 
-    if [ -f "$agora_root/nodes-simulation/docker-compose.yml" ]; then
-        docker-compose -f "$agora_root"/nodes-simulation/docker-compose.yml down
+    if [ -f "$agora_root/nodes-capella/docker-compose.yml" ]; then
+        docker-compose -f "$agora_root"/nodes-capella/docker-compose.yml down
     fi
 
 elif [ "$1" = "attach" ]; then

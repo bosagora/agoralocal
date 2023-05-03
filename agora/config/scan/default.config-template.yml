@@ -14,7 +14,7 @@ writerDatabase:
 
 # Chain network configuration
 chain:
-  configPath: /config/chain-config.yaml
+  configPath: /config/chain-config-bellatrix.yaml
   genesisTimestamp: REPLACE_GENESIS_TIME_STAMP
 
 # Note: It is possible to run either the frontend or the indexer or both at the same time
