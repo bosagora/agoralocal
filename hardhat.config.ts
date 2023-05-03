@@ -4,11 +4,43 @@ import "@nomiclabs/hardhat-ethers";
 import "@typechain/hardhat";
 import "hardhat-deploy";
 // tslint:disable-next-line:no-submodule-imports
-import { HardhatUserConfig } from "hardhat/config";
+import { HardhatUserConfig, task } from "hardhat/config";
 // tslint:disable-next-line:no-submodule-imports
 import { HardhatNetworkAccountUserConfig } from "hardhat/types/config";
 
 import { utils } from "ethers";
+
+task("wait-block", "Wait until the block is created")
+    .addParam("fork", "Fork Name")
+    .addParam("offset", "Block number to be added or subtracted")
+    .addParam("title", "Title")
+    .setAction(async (args, hre) => {
+        if (args.fork === "GENESIS" || args.fork === "ALTAIR" || args.fork === "BELLATRIX" || args.fork === "CAPELLA") {
+            const fork_data = JSON.parse(fs.readFileSync("agora/adjustment/fork_data.json", "utf-8"));
+            const base = Number(fork_data[args.fork + "_BLOCK_NUMBER"]);
+            const offset = Number(args.offset);
+            const block_number = base + offset;
+            console.log(`Fork :  ${args.fork}`);
+            console.log(`Offset :  ${offset}`);
+            console.log(`Waiting until block number ${block_number}`);
+            return new Promise<void>(async (resolve, reject) => {
+                let oldIdx = 0;
+                const check = async () => {
+                    const block = await hre.ethers.provider.getBlock("latest");
+                    if (oldIdx !== block.number)
+                        console.log(`[${args.title}] block number : ${block.number}, wait until ${block_number}`);
+                    oldIdx = block.number;
+                    if (block_number <= block.number) {
+                        resolve();
+                        return;
+                    } else {
+                        setTimeout(check, 1000);
+                    }
+                };
+                await check();
+            });
+        }
+    });
 
 function getAccounts() {
     const accounts = JSON.parse(fs.readFileSync("./agora/config/el/accounts.json", "utf-8"));
