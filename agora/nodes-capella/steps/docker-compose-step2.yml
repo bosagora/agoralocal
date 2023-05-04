@@ -339,7 +339,7 @@ services:
 
   node5-2-cl:
     container_name: node5-2-cl
-    image: bosagora/agora-cl-node:agora-v4.0.3
+    image: bosagora/agora-cl-node:agora_v4.0.3-37d13b
     volumes:
       - ../chain/node5/cl:/cl
       - ../chain/node5/el:/el
@@ -362,7 +362,7 @@ services:
 
   node5-3-val:
     container_name: node5-3-val
-    image: bosagora/agora-cl-validator:agora-v4.0.3
+    image: bosagora/agora-cl-validator:agora_v4.0.3-37d13b
     volumes:
       - ../chain/node5/cl:/cl
       - ../wallet/val5:/wallet

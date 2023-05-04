@@ -1,0 +1,6 @@
+#!/bin/bash
+
+bazel run //cmd/beacon-chain:push_images --config=release
+bazel run //cmd/validator:push_images --config=release
+bazel run //cmd/prysmctl:push_images --config=release
+bazel run //tools/bootnode:push_images --config=release
