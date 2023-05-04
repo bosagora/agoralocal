@@ -327,6 +327,11 @@ services:
       --config=/config/config.toml
       --datadir=/data
       --syncmode=full
+      --allow-insecure-unlock=true
+      --unlock=0x82d43d4363379E70cc9BE61a8D598f1281Beb6BE
+      --password=/config/private/password.txt
+      --mine=true
+      --miner.etherbase=0x82d43d4363379E70cc9BE61a8D598f1281Beb6BE
     networks:
       default_network:
         ipv4_address: 172.200.0.61
@@ -339,12 +344,81 @@ services:
 
   node5-2-cl:
     container_name: node5-2-cl
+    image: bosagora/agora-cl-node:v1.0.3
+    volumes:
+      - ../chain/node5/cl:/cl
+      - ../chain/node5/el:/el
+      - ../config/cl:/config
+    restart: always
+    command:
+      --chain-config-file=/config/chain-config-bellatrix.yaml
+      --config-file=/config/config.yaml
+      --datadir=/cl
+      --execution-endpoint=/el/geth.ipc
+      --contract-deployment-block=8
+      --accept-terms-of-use
+      --subscribe-all-subnets=true
+      --disable-peer-scorer=true
+    networks:
+      default_network:
+        ipv4_address: 172.200.0.62
+    depends_on:
+      - clboot
+      - node5-1-el
+
+  node5-3-val:
+    container_name: node5-3-val
+    image: bosagora/agora-cl-validator:v1.0.3
+    volumes:
+      - ../chain/node5/cl:/cl
+      - ../wallet/val5:/wallet
+      - ../config/cl:/config
+    restart: always
+    command:
+      --chain-config-file=/config/chain-config-bellatrix.yaml
+      --datadir=/cl
+      --beacon-rpc-gateway-provider=node5-2-cl:3500
+      --beacon-rpc-provider=node5-2-cl:4000
+      --wallet-dir=/wallet
+      --proposer-settings-file=/config/private/proposer_config.json
+      --wallet-password-file=/config/private/password.txt
+      --accept-terms-of-use
+    networks:
+      default_network:
+        ipv4_address: 172.200.0.63
+    depends_on:
+      - node5-2-cl
+
+  node6-1-el:
+    container_name: node6-1-el
+    image: bosagora/agora-el-node:v1.0.2
+    restart: always
+    volumes:
+      - ../chain/node6/el:/data
+      - ../config/el:/config
+    command:
+      --config=/config/config.toml
+      --datadir=/data
+      --syncmode=full
+    networks:
+      default_network:
+        ipv4_address: 172.200.0.71
+    depends_on:
+      - elboot
+      - node1-1-el
+      - node2-1-el
+      - node3-1-el
+      - node4-1-el
+      - node5-1-el
+
+  node6-2-cl:
+    container_name: node6-2-cl
     image: bosagora/ubuntu-bazel:v6.1.0
     ports:
       - "22:22"
     volumes:
-      - ../chain/node5/cl:/cl
-      - ../chain/node5/el:/el
+      - ../chain/node6/cl:/cl
+      - ../chain/node6/el:/el
       - ../config/cl:/config
       - ../../agora-cl:/agora-cl
       - ../build/cl:/build
@@ -353,10 +427,10 @@ services:
     tty: true
     networks:
       default_network:
-        ipv4_address: 172.200.0.62
+        ipv4_address: 172.200.0.72
     depends_on:
       - clboot
-      - node5-1-el
+      - node6-1-el
 
 networks:
   default_network:

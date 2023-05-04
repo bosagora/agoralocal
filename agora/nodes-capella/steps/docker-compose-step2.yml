@@ -16,7 +16,7 @@ services:
 
   clboot:
     container_name: clboot
-    image: bosagora/agora-cl-bootnode:agora-v4.0.3
+    image: bosagora/agora-cl-bootnode:v1.0.3
     restart: always
     command:
       --external-ip 172.200.0.12
@@ -246,7 +246,7 @@ services:
 
   node4-1-el:
     container_name: node4-1-el
-    image: bosagora/agora-el-node:v1.0.2
+    image: bosagora/agora-el-node:v1.0.1
     restart: always
     volumes:
       - ../chain/node4/el:/data
@@ -255,6 +255,11 @@ services:
       --config=/config/config.toml
       --datadir=/data
       --syncmode=full
+      --allow-insecure-unlock=true
+      --unlock=0xF051b6ed4cd4D1De4810833048776F835F3c266D
+      --password=/config/private/password.txt
+      --mine=true
+      --miner.etherbase=0xF051b6ed4cd4D1De4810833048776F835F3c266D
     networks:
       default_network:
         ipv4_address: 172.200.0.51
@@ -266,14 +271,14 @@ services:
 
   node4-2-cl:
     container_name: node4-2-cl
-    image: bosagora/agora-cl-node:agora-v4.0.3
+    image: bosagora/agora-cl-node:v1.0.3
     volumes:
       - ../chain/node4/cl:/cl
       - ../chain/node4/el:/el
       - ../config/cl:/config
     restart: always
     command:
-      --chain-config-file=/config/chain-config-capella.yaml
+      --chain-config-file=/config/chain-config-bellatrix.yaml
       --config-file=/config/config.yaml
       --datadir=/cl
       --execution-endpoint=/el/geth.ipc
@@ -290,14 +295,14 @@ services:
 
   node4-3-val:
     container_name: node4-3-val
-    image: bosagora/agora-cl-validator:agora-v4.0.3
+    image: bosagora/agora-cl-validator:v1.0.3
     volumes:
       - ../chain/node4/cl:/cl
       - ../wallet/val4:/wallet
       - ../config/cl:/config
     restart: always
     command:
-      --chain-config-file=/config/chain-config-capella.yaml
+      --chain-config-file=/config/chain-config-bellatrix.yaml
       --datadir=/cl
       --beacon-rpc-gateway-provider=node4-2-cl:3500
       --beacon-rpc-provider=node4-2-cl:4000
@@ -310,6 +315,73 @@ services:
         ipv4_address: 172.200.0.53
     depends_on:
       - node4-2-cl
+
+  node5-1-el:
+    container_name: node5-1-el
+    image: bosagora/agora-el-node:v1.0.2
+    restart: always
+    volumes:
+      - ../chain/node5/el:/data
+      - ../config/el:/config
+    command:
+      --config=/config/config.toml
+      --datadir=/data
+      --syncmode=full
+    networks:
+      default_network:
+        ipv4_address: 172.200.0.61
+    depends_on:
+      - elboot
+      - node1-1-el
+      - node2-1-el
+      - node3-1-el
+      - node4-1-el
+
+  node5-2-cl:
+    container_name: node5-2-cl
+    image: bosagora/agora-cl-node:agora-v4.0.3
+    volumes:
+      - ../chain/node5/cl:/cl
+      - ../chain/node5/el:/el
+      - ../config/cl:/config
+    restart: always
+    command:
+      --chain-config-file=/config/chain-config-capella.yaml
+      --config-file=/config/config.yaml
+      --datadir=/cl
+      --execution-endpoint=/el/geth.ipc
+      --contract-deployment-block=8
+      --accept-terms-of-use
+      --disable-peer-scorer=true
+    networks:
+      default_network:
+        ipv4_address: 172.200.0.62
+    depends_on:
+      - clboot
+      - node5-1-el
+
+  node5-3-val:
+    container_name: node5-3-val
+    image: bosagora/agora-cl-validator:agora-v4.0.3
+    volumes:
+      - ../chain/node5/cl:/cl
+      - ../wallet/val5:/wallet
+      - ../config/cl:/config
+    restart: always
+    command:
+      --chain-config-file=/config/chain-config-capella.yaml
+      --datadir=/cl
+      --beacon-rpc-gateway-provider=node5-2-cl:3500
+      --beacon-rpc-provider=node5-2-cl:4000
+      --wallet-dir=/wallet
+      --proposer-settings-file=/config/private/proposer_config.json
+      --wallet-password-file=/config/private/password.txt
+      --accept-terms-of-use
+    networks:
+      default_network:
+        ipv4_address: 172.200.0.63
+    depends_on:
+      - node5-2-cl
 
 networks:
   default_network:
