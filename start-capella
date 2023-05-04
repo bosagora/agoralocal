@@ -44,6 +44,8 @@ function change_step() {
   docker stop node"$2"-1-el
   docker rm node"$2"-1-el
 
+  sleep 5
+
   cp -f agora/nodes-capella/steps/docker-compose-step"$1".yml agora/nodes-capella/docker-compose.yml
 
   docker run -it \
@@ -63,31 +65,39 @@ npx hardhat wait-block --title "Step 1, (BELLATRIX + 0)" --fork BELLATRIX --offs
 
 # Step 2
 npx hardhat wait-block --title "Step 2, (BELLATRIX + 35)" --fork BELLATRIX --offset 35 --network localhost
-change_step 2 4
+change_step 2 5
 
 # Step 3
 if [ "$BLOCK_SPEED" = "FAST" ]; then
-  npx hardhat wait-block --title "Step 3, (BELLATRIX + 50)" --fork BELLATRIX --offset 50 --network localhost
+  npx hardhat wait-block --title "Step 3, (BELLATRIX + 52)" --fork BELLATRIX --offset 52 --network localhost
 else
-  npx hardhat wait-block --title "Step 3, (BELLATRIX + 40)" --fork BELLATRIX --offset 40 --network localhost
+  npx hardhat wait-block --title "Step 3, (BELLATRIX + 52)" --fork BELLATRIX --offset 52 --network localhost
 fi
-change_step 3 3
+change_step 3 4
 
 # Step 4
 if [ "$BLOCK_SPEED" = "FAST" ]; then
-  npx hardhat wait-block --title "Step 4, (BELLATRIX + 65)" --fork BELLATRIX --offset 65 --network localhost
+  npx hardhat wait-block --title "Step 4, (BELLATRIX + 69)" --fork BELLATRIX --offset 69 --network localhost
 else
-  npx hardhat wait-block --title "Step 4, (BELLATRIX + 45)" --fork BELLATRIX --offset 45 --network localhost
+  npx hardhat wait-block --title "Step 4, (BELLATRIX + 69)" --fork BELLATRIX --offset 69 --network localhost
 fi
-change_step 4 2
+change_step 4 3
 
 # Step 5
 if [ "$BLOCK_SPEED" = "FAST" ]; then
-  npx hardhat wait-block --title "Step 5, (BELLATRIX + 80)" --fork BELLATRIX --offset 80 --network localhost
+  npx hardhat wait-block --title "Step 5, (BELLATRIX + 86)" --fork BELLATRIX --offset 86 --network localhost
 else
-  npx hardhat wait-block --title "Step 5, (BELLATRIX + 50)" --fork BELLATRIX --offset 50 --network localhost
+  npx hardhat wait-block --title "Step 5, (BELLATRIX + 86)" --fork BELLATRIX --offset 86 --network localhost
 fi
-change_step 5 1
+change_step 5 2
 
 # Step 6
-npx hardhat wait-block --title "Step 6, (CAPELLA + 0)" --fork CAPELLA --offset 0 --network localhost
+if [ "$BLOCK_SPEED" = "FAST" ]; then
+  npx hardhat wait-block --title "Step 6, (BELLATRIX + 103)" --fork BELLATRIX --offset 103 --network localhost
+else
+  npx hardhat wait-block --title "Step 6, (BELLATRIX + 103)" --fork BELLATRIX --offset 103 --network localhost
+fi
+change_step 6 1
+
+# Step 7
+npx hardhat wait-block --title "Step 7, (CAPELLA + 0)" --fork CAPELLA --offset 0 --network localhost

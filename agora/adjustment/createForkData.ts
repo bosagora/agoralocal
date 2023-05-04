@@ -46,8 +46,8 @@ forkData.SECONDS_PER_SLOT = secondsPerSlot;
 forkData.GENESIS_EPOCH = 0;
 forkData.ALTAIR_EPOCH = 1;
 forkData.BELLATRIX_EPOCH = 2;
-forkData.CAPELLA_EPOCH = block_speed === "FAST" ? 5 : 4;
-forkData.SHANGHAI_EPOCH = block_speed === "FAST" ? 5 : 4;
+forkData.CAPELLA_EPOCH = 6;
+forkData.SHANGHAI_EPOCH = 6;
 
 forkData.GENESIS_SLOT = forkData.GENESIS_EPOCH * slotPerEpoch;
 forkData.ALTAIR_SLOT = forkData.ALTAIR_EPOCH * slotPerEpoch;
