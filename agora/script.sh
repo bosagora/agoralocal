@@ -103,7 +103,7 @@ elif [ "$1" = "import" ]; then
     bosagora/agora-cl-validator:v1.0.3 \
     accounts import \
     --accept-terms-of-use \
-    --chain-config-file=/config/chain-config.yaml \
+    --chain-config-file=/config/chain-config-bellatrix.yaml \
     --keys-dir=/wallet/key"$2" \
     --wallet-dir=/wallet/val"$2"
 
