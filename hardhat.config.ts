@@ -1,5 +1,5 @@
 import fs from "fs";
-
+import axios from "axios";
 import "@nomiclabs/hardhat-ethers";
 import "@typechain/hardhat";
 // tslint:disable-next-line:no-submodule-imports
@@ -14,7 +14,7 @@ task("wait-block", "Wait until the block is created")
     .addParam("offset", "Block number to be added or subtracted")
     .addParam("title", "Title")
     .setAction(async (args, hre) => {
-        if (args.fork === "GENESIS" || args.fork === "ALTAIR" || args.fork === "BELLATRIX" || args.fork === "CAPELLA") {
+        if (args.fork === "GENESIS") {
             const fork_data = JSON.parse(fs.readFileSync("agora/adjustment/fork_data.json", "utf-8"));
             const base = Number(fork_data[args.fork + "_BLOCK_NUMBER"]);
             const offset = Number(args.offset);
@@ -35,6 +35,35 @@ task("wait-block", "Wait until the block is created")
                     } else {
                         setTimeout(check, 1000);
                     }
+                };
+                await check();
+            });
+        } else if (args.fork === "ALTAIR" || args.fork === "BELLATRIX" || args.fork === "CAPELLA") {
+            const fork_data = JSON.parse(fs.readFileSync("agora/adjustment/fork_data.json", "utf-8"));
+            const base = Number(fork_data[args.fork + "_SLOT"]);
+            const offset = Number(args.offset);
+            const slot = base + offset;
+            console.log(`Fork :  ${args.fork}`);
+            console.log(`Offset :  ${offset}`);
+            console.log(`Waiting until slot ${slot}`);
+            const client = axios.create();
+            return new Promise<void>(async (resolve, reject) => {
+                let oldIdx = 0;
+                const check = async () => {
+                    try {
+                        const res = await client.get("http://localhost:3500/eth/v2/beacon/blocks/head");
+                        const current_slot = Number(res.data.data.message.slot);
+                        if (oldIdx !== current_slot)
+                            console.log(`[${args.title}] slot : ${current_slot}, wait until ${slot}`);
+                        oldIdx = current_slot;
+                        if (slot <= current_slot) {
+                            resolve();
+                            return;
+                        }
+                    } catch (e) {
+                        //
+                    }
+                    setTimeout(check, 2000);
                 };
                 await check();
             });

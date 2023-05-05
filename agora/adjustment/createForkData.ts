@@ -13,23 +13,20 @@ interface IForkData {
     GENESIS_EPOCH: number;
     GENESIS_SLOT: number;
     GENESIS_BLOCK_NUMBER: number;
+    GENESIS_OFFSET: number;
     ALTAIR_TIME: number;
     ALTAIR_EPOCH: number;
     ALTAIR_SLOT: number;
-    ALTAIR_BLOCK_NUMBER: number;
     BELLATRIX_TIME: number;
     BELLATRIX_EPOCH: number;
     BELLATRIX_SLOT: number;
     BELLATRIX_BLOCK_NUMBER: number;
-    BELLATRIX_OFFSET: number;
     CAPELLA_TIME: number;
     CAPELLA_EPOCH: number;
     CAPELLA_SLOT: number;
-    CAPELLA_BLOCK_NUMBER: number;
     SHANGHAI_TIME: number;
     SHANGHAI_EPOCH: number;
     SHANGHAI_SLOT: number;
-    SHANGHAI_BLOCK_NUMBER: number;
 }
 
 const block_speed = process.env.BLOCK_SPEED || "SLOW";
@@ -61,19 +58,10 @@ forkData.BELLATRIX_TIME = forkData.GENESIS_TIME + forkData.BELLATRIX_SLOT * seco
 forkData.CAPELLA_TIME = forkData.GENESIS_TIME + forkData.CAPELLA_SLOT * secondsPerSlot;
 forkData.SHANGHAI_TIME = forkData.GENESIS_TIME + forkData.SHANGHAI_SLOT * secondsPerSlot;
 
-forkData.GENESIS_BLOCK_NUMBER = genesisBlockNumber;
-forkData.ALTAIR_BLOCK_NUMBER =
-    forkData.GENESIS_BLOCK_NUMBER + Math.ceil((forkData.ALTAIR_SLOT * secondsPerSlot) / secondsPerBlock);
+forkData.GENESIS_OFFSET = 3;
+forkData.GENESIS_BLOCK_NUMBER = genesisBlockNumber - forkData.GENESIS_OFFSET;
 forkData.BELLATRIX_BLOCK_NUMBER =
     forkData.GENESIS_BLOCK_NUMBER + Math.ceil((forkData.BELLATRIX_SLOT * secondsPerSlot) / secondsPerBlock);
 forkData.BELLATRIX_BLOCK_NUMBER = Math.ceil(forkData.BELLATRIX_BLOCK_NUMBER / 5) * 5;
-
-const A = forkData.GENESIS_TIME + (forkData.BELLATRIX_BLOCK_NUMBER - forkData.GENESIS_BLOCK_NUMBER) * secondsPerBlock;
-const B = forkData.GENESIS_TIME + forkData.BELLATRIX_SLOT * secondsPerSlot;
-forkData.BELLATRIX_OFFSET = Math.ceil((A - B) / secondsPerSlot);
-forkData.CAPELLA_BLOCK_NUMBER =
-    forkData.BELLATRIX_BLOCK_NUMBER - forkData.BELLATRIX_OFFSET + (forkData.CAPELLA_SLOT - forkData.BELLATRIX_SLOT);
-forkData.SHANGHAI_BLOCK_NUMBER =
-    forkData.BELLATRIX_BLOCK_NUMBER - forkData.BELLATRIX_OFFSET + (forkData.SHANGHAI_SLOT - forkData.BELLATRIX_SLOT);
 
 fs.writeFileSync("agora/adjustment/fork_data.json", beautify(JSON.stringify(forkData), { format: "json" }), "utf-8");

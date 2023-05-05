@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ -f .env ]; then
-  set -o allexport && source .env && set +o allexport
-fi
-
 ./agora/script.sh stop-agora-scan
 sleep 5
 
@@ -44,8 +40,6 @@ function change_step() {
   docker stop node"$2"-1-el
   docker rm node"$2"-1-el
 
-  sleep 5
-
   cp -f agora/nodes-capella/steps/docker-compose-step"$1".yml agora/nodes-capella/docker-compose.yml
 
   docker run -it \
@@ -68,35 +62,19 @@ npx hardhat wait-block --title "Step 2, (BELLATRIX + 35)" --fork BELLATRIX --off
 change_step 2 5
 
 # Step 3
-if [ "$BLOCK_SPEED" = "FAST" ]; then
-  npx hardhat wait-block --title "Step 3, (BELLATRIX + 52)" --fork BELLATRIX --offset 52 --network localhost
-else
-  npx hardhat wait-block --title "Step 3, (BELLATRIX + 52)" --fork BELLATRIX --offset 52 --network localhost
-fi
+npx hardhat wait-block --title "Step 3, (BELLATRIX + 50)" --fork BELLATRIX --offset 50 --network localhost
 change_step 3 4
 
 # Step 4
-if [ "$BLOCK_SPEED" = "FAST" ]; then
-  npx hardhat wait-block --title "Step 4, (BELLATRIX + 69)" --fork BELLATRIX --offset 69 --network localhost
-else
-  npx hardhat wait-block --title "Step 4, (BELLATRIX + 69)" --fork BELLATRIX --offset 69 --network localhost
-fi
+npx hardhat wait-block --title "Step 4, (BELLATRIX + 65)" --fork BELLATRIX --offset 65 --network localhost
 change_step 4 3
 
 # Step 5
-if [ "$BLOCK_SPEED" = "FAST" ]; then
-  npx hardhat wait-block --title "Step 5, (BELLATRIX + 86)" --fork BELLATRIX --offset 86 --network localhost
-else
-  npx hardhat wait-block --title "Step 5, (BELLATRIX + 86)" --fork BELLATRIX --offset 86 --network localhost
-fi
+npx hardhat wait-block --title "Step 5, (BELLATRIX + 80)" --fork BELLATRIX --offset 80 --network localhost
 change_step 5 2
 
 # Step 6
-if [ "$BLOCK_SPEED" = "FAST" ]; then
-  npx hardhat wait-block --title "Step 6, (BELLATRIX + 103)" --fork BELLATRIX --offset 103 --network localhost
-else
-  npx hardhat wait-block --title "Step 6, (BELLATRIX + 103)" --fork BELLATRIX --offset 103 --network localhost
-fi
+npx hardhat wait-block --title "Step 6, (BELLATRIX + 95)" --fork BELLATRIX --offset 95 --network localhost
 change_step 6 1
 
 # Step 7
