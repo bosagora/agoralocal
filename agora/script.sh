@@ -128,6 +128,16 @@ elif [ "$1" = "stop-agora-scan" ]; then
 
     docker-compose -f "$agora_root"/agora-scan/docker-compose.yml down
 
+elif [ "$1" = "start-ubuntu" ]; then
+
+    docker-compose -f "$agora_root"/bazel/docker-compose.yml up -d
+
+    docker attach ubuntu
+
+elif [ "$1" = "stop-ubuntu" ]; then
+
+    docker-compose -f "$agora_root"/bazel/docker-compose.yml down
+
 else
 
     color "31" "Process '$1' is not found!"
