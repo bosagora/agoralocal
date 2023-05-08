@@ -47,7 +47,7 @@ async function main() {
         );
 
         if ((idx + 1) % 10 === 0) await delay(10000);
-        else await delay(2000);
+        else await delay(3000);
     }
 }
 
