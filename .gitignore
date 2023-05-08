@@ -26,3 +26,5 @@ temp-*
 
 .env
 agora/bazel/.docker/config.json
+
+agora/wallet/bls_change/
