@@ -58,7 +58,7 @@ The Docker image below is used.
     - bosagora/agora-cl-node:v1.0.3
     - bosagora/agora-cl-validator:v1.0.3
 
-#### Step 2 ~ Step 5
+#### Step 2 ~ Step 6
 The nodes are changed sequentially one by one as follows.
 - agora-el
     - bosagora/agora-el-node:v1.0.1 -> bosagora/agora-el-node:v1.0.2
@@ -66,7 +66,7 @@ The nodes are changed sequentially one by one as follows.
     - bosagora/agora-cl-node:v1.0.3 -> bosagora/agora-cl-node:agora_v4.0.3-6613b3
     - bosagora/agora-cl-validator:v1.0.3 -> bosagora/agora-cl-validator:agora_v4.0.3-6613b3
 
-#### After Step 5
+#### After Step 6
 - agora-el
     - bosagora/agora-el-bootnode:v1.0.1
     - bosagora/agora-el-node:v1.0.2
@@ -100,7 +100,7 @@ The nodes are changed sequentially one by one as follows.
 ./agora/script.sh start-agora-scan
 ```
 
-## Start agora-scan
+## Stop agora-scan
 
 ```shell
 ./agora/script.sh stop-agora-scan
