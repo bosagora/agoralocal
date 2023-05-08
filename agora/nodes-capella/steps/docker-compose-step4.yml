@@ -379,6 +379,3 @@ networks:
       driver: default
       config:
         - subnet: 172.200.0.0/16
-
-volumes:
-  bazel-cache:
