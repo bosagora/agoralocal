@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  ubuntu:
+    container_name: ubuntu
+    image: bosagora/ubuntu-bazel:v6.1.0
+    ports:
+      - "22:22"
+    volumes:
+      - ../config/cl:/config
+      - ../../agora-cl:/agora-cl
+      - ../build/cl:/build
+      - bazel-cache:/root/.cache
+      - ./.docker:/root/.docker
+    stdin_open: true
+    tty: true
+    networks:
+      - default_network
+
+networks:
+  default_network:
+    driver: bridge
+
+volumes:
+  bazel-cache:

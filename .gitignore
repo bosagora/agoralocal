@@ -25,3 +25,4 @@ agora-cl/
 temp-*
 
 .env
+agora/bazel/.docker/config.json
