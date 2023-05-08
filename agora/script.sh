@@ -128,6 +128,14 @@ elif [ "$1" = "stop-agora-scan" ]; then
 
     docker-compose -f "$agora_root"/agora-scan/docker-compose.yml down
 
+elif [ "$1" = "validator-info" ]; then
+
+    npx ts-node scripts/tools/getValidatorInfo.ts "$2"
+
+elif [ "$1" = "all-validators-info" ]; then
+
+    npx ts-node scripts/tools/getAllValidatorsInfo.ts
+
 elif [ "$1" = "start-ubuntu" ]; then
 
     docker-compose -f "$agora_root"/bazel/docker-compose.yml up -d
