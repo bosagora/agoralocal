@@ -136,6 +136,108 @@ elif [ "$1" = "all-validators-info" ]; then
 
     npx ts-node scripts/tools/getAllValidatorsInfo.ts
 
+elif [ "$1" = "bls-change-35-37" ]; then
+
+    rm -rf "$agora_root"/wallet/bls_change/35
+    mkdir -p "$agora_root"/wallet/bls_change/35
+
+    echo "Mnemonic : board fire prize defy limb arm diet fee usage settle rigid sunny duty squirrel cheap history session same tilt candy loan culture pretty anchor"
+
+    docker run -it --rm \
+      -v "$agora_root"/wallet/bls_change/35:/withdrawal \
+      bosagora/agora-deposit-cli:v2.5.0 \
+      --language=english \
+      --non_interactive \
+      generate-bls-to-execution-change \
+      --chain=devnet \
+      --validator_start_index=35 \
+      --validator_indices=35,36,37 \
+      --bls_withdrawal_credentials_list=000e6e8f86eea4f677972cc1a80f6df3d2472e984eb5bdb14642669ff85fcfa0,0053b18e00df72bb97d022b29894b874fb65998ec0918605aeac735370e9f0bf,00eb2cd558d8b60469e5447e0953277d2f2f1dbdfca44fb0a86677165577a64e \
+      --execution_address=0x9D2336FDFB431C8759f14a788D250a3b3577256e \
+      --bls_to_execution_changes_folder=/withdrawal
+
+elif [ "$1" = "bls-change-38" ]; then
+
+    rm -rf "$agora_root"/wallet/bls_change/38
+    mkdir -p "$agora_root"/wallet/bls_change/38
+
+    echo "Mnemonic : board fire prize defy limb arm diet fee usage settle rigid sunny duty squirrel cheap history session same tilt candy loan culture pretty anchor"
+
+    docker run -it --rm \
+      -v "$agora_root"/wallet/bls_change/38:/withdrawal \
+      bosagora/agora-deposit-cli:v2.5.0 \
+      --language=english \
+      --non_interactive \
+      generate-bls-to-execution-change \
+      --chain=devnet \
+      --validator_start_index=38 \
+      --validator_indices=38 \
+      --bls_withdrawal_credentials_list=00f50deb9ed081cc5dae40c3a1887fe1f772d37b39c649c7074983f26fb9db19 \
+      --execution_address=0xBD598a0188c226427AE493bFc136DB0eaf90B341 \
+      --bls_to_execution_changes_folder=/withdrawal
+
+elif [ "$1" = "bls-change-39" ]; then
+
+    rm -rf "$agora_root"/wallet/bls_change/39
+    mkdir -p "$agora_root"/wallet/bls_change/39
+
+    echo "Mnemonic : board fire prize defy limb arm diet fee usage settle rigid sunny duty squirrel cheap history session same tilt candy loan culture pretty anchor"
+
+    docker run -it --rm \
+      -v "$agora_root"/wallet/bls_change/39:/withdrawal \
+      bosagora/agora-deposit-cli:v2.5.0 \
+      --language=english \
+      --non_interactive \
+      generate-bls-to-execution-change \
+      --chain=devnet \
+      --validator_start_index=39 \
+      --validator_indices=39 \
+      --bls_withdrawal_credentials_list=0072b98f706baf445239abb7b3cbf7a070f9bf34cf016a2c093a9034f364045d \
+      --execution_address=0x45797f91B8258F60042004856EF25c453D5e062d \
+      --bls_to_execution_changes_folder=/withdrawal
+
+elif [ "$1" = "validator-withdraw-35-37" ]; then
+
+    docker run -it --rm \
+      -v "$agora_root"/config/cl:/config \
+      -v "$agora_root"/wallet/bls_change/35:/withdrawal \
+      bosagora/agora-cl-ctl:agora_v4.0.3-6613b3 \
+      validator withdraw \
+      --chain-config-file=/config/chain-config-capella.yaml \
+      --config-file=/config/config.yaml \
+      --beacon-node-host=http://host.docker.internal:3500 \
+      --accept-terms-of-use \
+      --confirm \
+      --path=/withdrawal
+
+elif [ "$1" = "validator-withdraw-38" ]; then
+
+    docker run -it --rm \
+      -v "$agora_root"/config/cl:/config \
+      -v "$agora_root"/wallet/bls_change/38:/withdrawal \
+      bosagora/agora-cl-ctl:agora_v4.0.3-6613b3 \
+      validator withdraw \
+      --chain-config-file=/config/chain-config-capella.yaml \
+      --config-file=/config/config.yaml \
+      --beacon-node-host=http://host.docker.internal:3500 \
+      --accept-terms-of-use \
+      --confirm \
+      --path=/withdrawal
+
+elif [ "$1" = "validator-withdraw-39" ]; then
+
+    docker run -it --rm \
+      -v "$agora_root"/config/cl:/config \
+      -v "$agora_root"/wallet/bls_change/39:/withdrawal \
+      bosagora/agora-cl-ctl:agora_v4.0.3-6613b3 \
+      validator withdraw \
+      --chain-config-file=/config/chain-config-capella.yaml \
+      --config-file=/config/config.yaml \
+      --beacon-node-host=http://host.docker.internal:3500 \
+      --accept-terms-of-use \
+      --confirm \
+      --path=/withdrawal
+
 elif [ "$1" = "start-ubuntu" ]; then
 
     docker-compose -f "$agora_root"/bazel/docker-compose.yml up -d
