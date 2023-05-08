@@ -39,6 +39,7 @@ services:
       --config=/config/config.toml
       --datadir=/data
       --syncmode=full
+      --gcmode=archive
     networks:
       default_network:
         ipv4_address: 172.200.0.21
