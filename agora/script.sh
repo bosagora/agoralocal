@@ -238,6 +238,19 @@ elif [ "$1" = "validator-withdraw-39" ]; then
       --confirm \
       --path=/withdrawal
 
+elif [ "$1" = "validator-exit" ]; then
+
+    docker run -it --rm \
+      -v "$agora_root"/config/cl:/config \
+      -v "$agora_root"/wallet/val5:/wallet \
+      bosagora/agora-cl-ctl:agora_v4.0.3-6613b3 \
+      validator exit \
+      --wallet-dir=/wallet \
+      --chain-config-file=/config/chain-config-capella.yaml \
+      --config-file=/config/config.yaml \
+      --beacon-rpc-provider=host.docker.internal:4000 \
+      --accept-terms-of-use
+
 elif [ "$1" = "start-ubuntu" ]; then
 
     docker-compose -f "$agora_root"/bazel/docker-compose.yml up -d
