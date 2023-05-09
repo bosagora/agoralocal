@@ -41,7 +41,7 @@ The Docker image below is used.
 ### Command
 
 ```shell
-./start-ballatrix
+./start-bellatrix
 ```
 
 ### The Fork Capella
