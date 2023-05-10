@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  boa-scan-builder:
+    platform: linux/arm64/v8
+    container_name: boa-scan-builder
+    image: bosagora/boa-scan-builder:v1.14.4
+    ports:
+      - "14000:14000"
+    volumes:
+      - ../../../boa-scan:/app
+      - ./scripts:/scripts
+      - mix-cache:/root/.mix
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    env_file:
+      - ./boa-scan.env
+    stdin_open: true
+    tty: true
+    networks:
+      - default_network
+
+networks:
+  default_network:
+    driver: bridge
+
+volumes:
+  mix-cache:
