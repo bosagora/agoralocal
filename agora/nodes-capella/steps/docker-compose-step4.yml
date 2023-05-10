@@ -1,6 +1,7 @@
 version: '3.3'
 services:
   elboot:
+    platform: linux/amd64
     container_name: elboot
     image: bosagora/agora-el-bootnode:v1.0.1
     restart: always
@@ -15,6 +16,7 @@ services:
         ipv4_address: 172.200.0.11
 
   clboot:
+    platform: linux/amd64
     container_name: clboot
     image: bosagora/agora-cl-bootnode:v1.0.3
     restart: always
@@ -27,6 +29,7 @@ services:
         ipv4_address: 172.200.0.12
 
   node1-1-el:
+    platform: linux/amd64
     container_name: node1-1-el
     image: bosagora/agora-el-node:v1.0.1
     ports:
@@ -52,6 +55,7 @@ services:
       - elboot
 
   node1-2-cl:
+    platform: linux/amd64
     container_name: node1-2-cl
     image: bosagora/agora-cl-node:v1.0.3
     ports:
@@ -82,6 +86,7 @@ services:
       - node1-1-el
 
   node1-3-val:
+    platform: linux/amd64
     container_name: node1-3-val
     image: bosagora/agora-cl-validator:v1.0.3
     volumes:
@@ -105,6 +110,7 @@ services:
       - node1-2-cl
 
   node2-1-el:
+    platform: linux/amd64
     container_name: node2-1-el
     image: bosagora/agora-el-node:v1.0.1
     restart: always
@@ -128,6 +134,7 @@ services:
       - node1-1-el
 
   node2-2-cl:
+    platform: linux/amd64
     container_name: node2-2-cl
     image: bosagora/agora-cl-node:v1.0.3
     volumes:
@@ -152,6 +159,7 @@ services:
       - node2-1-el
 
   node2-3-val:
+    platform: linux/amd64
     container_name: node2-3-val
     image: bosagora/agora-cl-validator:v1.0.3
     volumes:
@@ -175,6 +183,7 @@ services:
       - node2-2-cl
 
   node3-1-el:
+    platform: linux/amd64
     container_name: node3-1-el
     image: bosagora/agora-el-node:v1.0.2
     restart: always
@@ -194,6 +203,7 @@ services:
       - node2-1-el
 
   node3-2-cl:
+    platform: linux/amd64
     container_name: node3-2-cl
     image: bosagora/agora-cl-node:agora_v4.0.3-6613b3
     volumes:
@@ -218,6 +228,7 @@ services:
       - node3-1-el
 
   node3-3-val:
+    platform: linux/amd64
     container_name: node3-3-val
     image: bosagora/agora-cl-validator:agora_v4.0.3-6613b3
     volumes:
@@ -241,6 +252,7 @@ services:
       - node3-2-cl
 
   node4-1-el:
+    platform: linux/amd64
     container_name: node4-1-el
     image: bosagora/agora-el-node:v1.0.2
     restart: always
@@ -261,6 +273,7 @@ services:
       - node3-1-el
 
   node4-2-cl:
+    platform: linux/amd64
     container_name: node4-2-cl
     image: bosagora/agora-cl-node:agora_v4.0.3-6613b3
     volumes:
@@ -285,6 +298,7 @@ services:
       - node4-1-el
 
   node4-3-val:
+    platform: linux/amd64
     container_name: node4-3-val
     image: bosagora/agora-cl-validator:agora_v4.0.3-6613b3
     volumes:
@@ -308,6 +322,7 @@ services:
       - node4-2-cl
 
   node5-1-el:
+    platform: linux/amd64
     container_name: node5-1-el
     image: bosagora/agora-el-node:v1.0.2
     restart: always
@@ -329,6 +344,7 @@ services:
       - node4-1-el
 
   node5-2-cl:
+    platform: linux/amd64
     container_name: node5-2-cl
     image: bosagora/agora-cl-node:agora_v4.0.3-6613b3
     volumes:
@@ -352,6 +368,7 @@ services:
       - node5-1-el
 
   node5-3-val:
+    platform: linux/amd64
     container_name: node5-3-val
     image: bosagora/agora-cl-validator:agora_v4.0.3-6613b3
     volumes:
