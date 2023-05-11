@@ -20,8 +20,6 @@ agora/nodes-capella/docker-compose.yml
 agora/config/el/genesis-merge.json
 agora/config/el/genesis-shanghai.json
 
-agora-cl/
-
 temp-*
 
 .env

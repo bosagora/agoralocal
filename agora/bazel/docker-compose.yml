@@ -5,7 +5,7 @@ services:
     image: bosagora/ubuntu-bazel:v6.1.0
     volumes:
       - ../config/cl:/config
-      - ../../agora-cl:/agora-cl
+      - ../../../agora-cl:/agora-cl
       - ../build/cl:/build
       - bazel-cache:/root/.cache
       - ./.docker:/root/.docker
