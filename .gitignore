@@ -26,3 +26,8 @@ temp-*
 agora/bazel/.docker/config.json
 
 agora/wallet/bls_change/
+
+agora/logs/
+agora/boa-scan/logs/
+agora/boa-scan/services/logs/
+agora/boa-scan/services/redis-data/

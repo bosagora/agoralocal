@@ -24,6 +24,18 @@ docker-compose -f "$(pwd)"/agora/nodes-capella/docker-compose.yml up -d
 
 sleep 5
 
+while true; do
+  case "$1" in
+    -b|--boascan)
+      ./agora/script.sh start-boa-scan
+      break;;
+     *)
+      break;;
+  esac
+done
+
+sleep 5
+
 npm run deploy:commons_budeget
 npm run deploy:deposit
 npm run staking
