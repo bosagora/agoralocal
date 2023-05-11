@@ -1,7 +1,6 @@
 version: '3.3'
 services:
   boa-scan-builder:
-    platform: linux/arm64/v8
     container_name: boa-scan-builder
     image: bosagora/boa-scan-builder:v1.14.4
     ports:
