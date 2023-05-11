@@ -3,8 +3,6 @@ services:
   ubuntu:
     container_name: ubuntu
     image: bosagora/ubuntu-bazel:v6.1.0
-    ports:
-      - "22:22"
     volumes:
       - ../config/cl:/config
       - ../../agora-cl:/agora-cl
