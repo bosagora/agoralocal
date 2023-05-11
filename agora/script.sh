@@ -282,11 +282,21 @@ elif [ "$1" = "start-ubuntu" ]; then
 
     docker-compose -f "$agora_root"/bazel/docker-compose.yml up -d
 
-    docker attach ubuntu
+    docker exec -it ubuntu /bin/bash
 
 elif [ "$1" = "stop-ubuntu" ]; then
 
     docker-compose -f "$agora_root"/bazel/docker-compose.yml down
+
+elif [ "$1" = "start-bs-builder" ]; then
+
+    docker-compose -f "$agora_root"/boa-scan-builder/docker-compose.yml up -d
+
+    docker exec -it boa-scan-builder /bin/bash
+
+elif [ "$1" = "stop-bs-builder" ]; then
+
+    docker-compose -f "$agora_root"/boa-scan-builder/docker-compose.yml down
 
 else
 
