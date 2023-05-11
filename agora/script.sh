@@ -17,6 +17,16 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
+system=""
+case "$OSTYPE" in
+darwin*) system="darwin" ;;
+linux*) system="linux" ;;
+msys*) system="windows" ;;
+cygwin*) system="windows" ;;
+*) exit 1 ;;
+esac
+readonly system
+
 dirname=${PWD##*/}
 agora_root="$(pwd)/agora"
 if [ $dirname = "agora" ]; then
@@ -32,7 +42,12 @@ if [ "$1" = "init" ]; then
     npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/el/genesis-template-merge.json "$agora_root"/config/el/genesis-merge.json
     npx ts-node "$agora_root"/adjustment/replaceGenesisTimeStamp.ts "$agora_root"/config/scan/default.config-template.yml "$agora_root"/config/scan/default.config.yml
 
-    rm -rf "$agora_root"/chain
+    if [ "$system" == "linux" ]; then
+        sudo rm -rf "$agora_root"/chain
+    else
+        rm -rf "$agora_root"/chain
+    fi
+
     mkdir -p "$agora_root"/chain
 
     mkdir -p "$agora_root"/chain/node1
@@ -138,7 +153,11 @@ elif [ "$1" = "all-validators-info" ]; then
 
 elif [ "$1" = "bls-change-35-37" ]; then
 
-    rm -rf "$agora_root"/wallet/bls_change/35
+    if [ "$system" == "linux" ]; then
+        sudo rm -rf "$agora_root"/wallet/bls_change/35
+    else
+        rm -rf "$agora_root"/wallet/bls_change/35
+    fi
     mkdir -p "$agora_root"/wallet/bls_change/35
 
     echo "Mnemonic : board fire prize defy limb arm diet fee usage settle rigid sunny duty squirrel cheap history session same tilt candy loan culture pretty anchor"
@@ -158,7 +177,11 @@ elif [ "$1" = "bls-change-35-37" ]; then
 
 elif [ "$1" = "bls-change-38" ]; then
 
-    rm -rf "$agora_root"/wallet/bls_change/38
+    if [ "$system" == "linux" ]; then
+        sudo rm -rf "$agora_root"/wallet/bls_change/38
+    else
+        rm -rf "$agora_root"/wallet/bls_change/38
+    fi
     mkdir -p "$agora_root"/wallet/bls_change/38
 
     echo "Mnemonic : board fire prize defy limb arm diet fee usage settle rigid sunny duty squirrel cheap history session same tilt candy loan culture pretty anchor"
@@ -178,7 +201,11 @@ elif [ "$1" = "bls-change-38" ]; then
 
 elif [ "$1" = "bls-change-39" ]; then
 
-    rm -rf "$agora_root"/wallet/bls_change/39
+    if [ "$system" == "linux" ]; then
+        sudo rm -rf "$agora_root"/wallet/bls_change/39
+    else
+        rm -rf "$agora_root"/wallet/bls_change/39
+    fi
     mkdir -p "$agora_root"/wallet/bls_change/39
 
     echo "Mnemonic : board fire prize defy limb arm diet fee usage settle rigid sunny duty squirrel cheap history session same tilt candy loan culture pretty anchor"
