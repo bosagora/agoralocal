@@ -130,6 +130,8 @@ elif [ "$1" = "stop-db" ]; then
 
     docker-compose -f "$agora_root"/postgres/docker-compose.yml down
 
+    docker volume rm postgres_postgres-db
+
 elif [ "$1" = "init-db" ]; then
 
     chmod 0600 "$agora_root"/postgres/.pgpass
