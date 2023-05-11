@@ -3,6 +3,9 @@
 ./agora/script.sh stop-agora-scan
 sleep 5
 
+./agora/script.sh stop-boa-scan
+sleep 5
+
 ./agora/script.sh stop-db
 sleep 5
 
@@ -26,3 +29,15 @@ npm run deploy:deposit
 npm run staking
 
 ./agora/script.sh start-agora-scan
+
+sleep 5
+
+while true; do
+  case "$1" in
+    -b|--boascan)
+      ./agora/script.sh start-boa-scan
+      break;;
+     *)
+      break;;
+  esac
+done
