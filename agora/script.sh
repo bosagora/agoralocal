@@ -280,13 +280,13 @@ elif [ "$1" = "validator-exit" ]; then
       --beacon-rpc-provider=host.docker.internal:4000 \
       --accept-terms-of-use
 
-elif [ "$1" = "start-ac-builder" ]; then
+elif [ "$1" = "start-cl-builder" ]; then
 
     docker-compose -f "$agora_root"/agora-cl-builder/docker-compose.yml up -d
 
     docker exec -it agora-cl-builder /bin/bash
 
-elif [ "$1" = "stop-ac-builder" ]; then
+elif [ "$1" = "stop-cl-builder" ]; then
 
     docker-compose -f "$agora_root"/agora-cl-builder/docker-compose.yml down
 
