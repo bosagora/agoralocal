@@ -23,7 +23,7 @@ agora/config/el/genesis-shanghai.json
 temp-*
 
 .env
-agora/bazel/.docker/config.json
+agora/agora-cl-builder/.docker/config.json
 
 agora/wallet/bls_change/
 

@@ -432,7 +432,7 @@ services:
 
   node6-2-cl:
     container_name: node6-2-cl
-    image: bosagora/ubuntu-bazel:v6.1.0
+    image: bosagora/agora-cl-builder:v6.1.0
     volumes:
       - ../chain/node6/cl:/cl
       - ../chain/node6/el:/el

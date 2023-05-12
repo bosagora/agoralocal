@@ -280,15 +280,15 @@ elif [ "$1" = "validator-exit" ]; then
       --beacon-rpc-provider=host.docker.internal:4000 \
       --accept-terms-of-use
 
-elif [ "$1" = "start-ubuntu" ]; then
+elif [ "$1" = "start-ac-builder" ]; then
 
-    docker-compose -f "$agora_root"/bazel/docker-compose.yml up -d
+    docker-compose -f "$agora_root"/agora-cl-builder/docker-compose.yml up -d
 
-    docker exec -it ubuntu /bin/bash
+    docker exec -it agora-cl-builder /bin/bash
 
-elif [ "$1" = "stop-ubuntu" ]; then
+elif [ "$1" = "stop-ac-builder" ]; then
 
-    docker-compose -f "$agora_root"/bazel/docker-compose.yml down
+    docker-compose -f "$agora_root"/agora-cl-builder/docker-compose.yml down
 
 elif [ "$1" = "start-bs-builder" ]; then
 
