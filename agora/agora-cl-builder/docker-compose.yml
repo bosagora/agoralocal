@@ -6,7 +6,7 @@ services:
     volumes:
       - ../config/cl:/config
       - ../../../agora-cl:/agora-cl
-      - ../build/cl:/build
+      - ./build:/build
       - bazel-cache:/root/.cache
       - ./.docker:/root/.docker
     stdin_open: true
