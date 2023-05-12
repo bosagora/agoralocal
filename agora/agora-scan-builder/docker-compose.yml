@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  agora-scan-builder:
+    image: golang:1.18
+    container_name: agora-scan-builder
+    ports:
+      - "3333:3333"
+    restart: always
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ../chain/node1/el:/el
+      - ../config/cl:/config
+      - ../../../agora-scan:/app
+      - ../config/scan:/app-config
+      - ./scripts:/scripts
+    working_dir: /app
+    command: /bin/sh
+    stdin_open: true
+    tty: true
+    networks:
+      - default_network
+
+networks:
+  default_network:
+    driver: bridge

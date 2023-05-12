@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/app/bin/statistics --config /app-config/default.config.yml
