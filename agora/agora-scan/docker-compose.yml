@@ -1,8 +1,7 @@
 version: '3.3'
 services:
   agorascan:
-    platform: linux/amd64
-    image: bosagora/agora-scan:agora
+    image: bosagora/agora-scan:agora-v1.0.0
     container_name: agorascan
     ports:
       - "3333:3333"
