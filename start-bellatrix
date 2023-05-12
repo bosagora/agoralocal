@@ -1,16 +1,16 @@
 #!/bin/bash
 
 ./agora/script.sh stop-agora-scan
-sleep 5
+sleep 2
 
 ./agora/script.sh stop-boa-scan
-sleep 5
+sleep 2
 
 ./agora/script.sh stop-db
-sleep 5
+sleep 2
 
 ./agora/script.sh stop
-sleep 5
+sleep 2
 
 ./agora/script.sh start-db
 sleep 5
