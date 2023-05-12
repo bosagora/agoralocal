@@ -290,6 +290,16 @@ elif [ "$1" = "stop-ac-builder" ]; then
 
     docker-compose -f "$agora_root"/agora-cl-builder/docker-compose.yml down
 
+elif [ "$1" = "start-as-builder" ]; then
+
+    docker-compose -f "$agora_root"/agora-scan-builder/docker-compose.yml up -d
+
+    docker exec -it agora-scan-builder /bin/bash
+
+elif [ "$1" = "stop-as-builder" ]; then
+
+    docker-compose -f "$agora_root"/agora-scan-builder/docker-compose.yml down
+
 elif [ "$1" = "start-bs-builder" ]; then
 
     docker-compose -f "$agora_root"/boa-scan-builder/docker-compose.yml up -d
