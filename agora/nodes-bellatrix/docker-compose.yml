@@ -438,7 +438,7 @@ services:
       - ../chain/node6/el:/el
       - ../config/cl:/config
       - ../../../agora-cl:/agora-cl
-      - ../build/cl:/build
+      - ../agora-cl-builder/build:/build
       - bazel-cache:/root/.cache
     stdin_open: true
     tty: true
