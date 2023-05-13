@@ -1,8 +1,8 @@
 version: '3.3'
 services:
-  agorascan:
-    image: bosagora/agora-scan:agora-v1.0.0
-    container_name: agorascan
+  agora-scan-explorer:
+    image: bosagora/agora-scan:agora-92e6d0
+    container_name: agora-scan-explorer
     ports:
       - "3333:3333"
     restart: always
@@ -12,6 +12,20 @@ services:
       - ../chain/node1/el:/el
       - ../config/cl:/config
       - ../config/scan:/app/config
+    command: sh -c "/app/explorer --config /app/config/default.config.yml"
+    networks:
+      - default_network
+
+  agora-scan-statistics:
+    image: bosagora/agora-scan:agora-92e6d0
+    container_name: agora-scan-statistics
+    restart: always
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ../config/cl:/config
+      - ../config/scan:/app/config
+    command: sh -c "/app/statistics --config /app/config/default.config.yml"
     networks:
       - default_network
 
