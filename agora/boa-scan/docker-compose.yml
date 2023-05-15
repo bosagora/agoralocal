@@ -8,7 +8,7 @@ services:
   boascan:
     depends_on:
       - redis_db
-    image: blockscout/blockscout:${DOCKER_TAG:-latest}
+    image: bosagora/boa-scan:agora-v5.1.4
     restart: always
     stop_grace_period: 5m
     container_name: 'boascan'
