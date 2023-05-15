@@ -280,7 +280,7 @@ services:
   node4-2-cl:
     platform: linux/amd64
     container_name: node4-2-cl
-    image: bosagora/agora-cl-node:agora_v4.0.3-6613b3
+    image: bosagora/agora-cl-node:agora_v4.0.3-54af4e
     volumes:
       - ../chain/node4/cl:/cl
       - ../chain/node4/el:/el
@@ -305,7 +305,7 @@ services:
   node4-3-val:
     platform: linux/amd64
     container_name: node4-3-val
-    image: bosagora/agora-cl-validator:agora_v4.0.3-6613b3
+    image: bosagora/agora-cl-validator:agora_v4.0.3-54af4e
     volumes:
       - ../chain/node4/cl:/cl
       - ../wallet/val4:/wallet
@@ -351,7 +351,7 @@ services:
   node5-2-cl:
     platform: linux/amd64
     container_name: node5-2-cl
-    image: bosagora/agora-cl-node:agora_v4.0.3-6613b3
+    image: bosagora/agora-cl-node:agora_v4.0.3-54af4e
     volumes:
       - ../chain/node5/cl:/cl
       - ../chain/node5/el:/el
@@ -375,7 +375,7 @@ services:
   node5-3-val:
     platform: linux/amd64
     container_name: node5-3-val
-    image: bosagora/agora-cl-validator:agora_v4.0.3-6613b3
+    image: bosagora/agora-cl-validator:agora_v4.0.3-54af4e
     volumes:
       - ../chain/node5/cl:/cl
       - ../wallet/val5:/wallet

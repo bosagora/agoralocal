@@ -230,7 +230,7 @@ elif [ "$1" = "validator-withdraw-35-37" ]; then
     docker run -it --rm \
       -v "$agora_root"/config/cl:/config \
       -v "$agora_root"/wallet/bls_change/35:/withdrawal \
-      bosagora/agora-cl-ctl:agora_v4.0.3-6613b3 \
+      bosagora/agora-cl-ctl:agora_v4.0.3-54af4e \
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
@@ -244,7 +244,7 @@ elif [ "$1" = "validator-withdraw-38" ]; then
     docker run -it --rm \
       -v "$agora_root"/config/cl:/config \
       -v "$agora_root"/wallet/bls_change/38:/withdrawal \
-      bosagora/agora-cl-ctl:agora_v4.0.3-6613b3 \
+      bosagora/agora-cl-ctl:agora_v4.0.3-54af4e \
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
@@ -258,7 +258,7 @@ elif [ "$1" = "validator-withdraw-39" ]; then
     docker run -it --rm \
       -v "$agora_root"/config/cl:/config \
       -v "$agora_root"/wallet/bls_change/39:/withdrawal \
-      bosagora/agora-cl-ctl:agora_v4.0.3-6613b3 \
+      bosagora/agora-cl-ctl:agora_v4.0.3-54af4e \
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
@@ -272,7 +272,7 @@ elif [ "$1" = "validator-exit" ]; then
     docker run -it --rm \
       -v "$agora_root"/config/cl:/config \
       -v "$agora_root"/wallet/val5:/wallet \
-      bosagora/agora-cl-ctl:agora_v4.0.3-6613b3 \
+      bosagora/agora-cl-ctl:agora_v4.0.3-54af4e \
       validator exit \
       --wallet-dir=/wallet \
       --chain-config-file=/config/chain-config-capella.yaml \

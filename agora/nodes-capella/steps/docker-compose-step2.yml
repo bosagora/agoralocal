@@ -356,7 +356,7 @@ services:
   node5-2-cl:
     platform: linux/amd64
     container_name: node5-2-cl
-    image: bosagora/agora-cl-node:agora_v4.0.3-6613b3
+    image: bosagora/agora-cl-node:agora_v4.0.3-54af4e
     volumes:
       - ../chain/node5/cl:/cl
       - ../chain/node5/el:/el
@@ -380,7 +380,7 @@ services:
   node5-3-val:
     platform: linux/amd64
     container_name: node5-3-val
-    image: bosagora/agora-cl-validator:agora_v4.0.3-6613b3
+    image: bosagora/agora-cl-validator:agora_v4.0.3-54af4e
     volumes:
       - ../chain/node5/cl:/cl
       - ../wallet/val5:/wallet
