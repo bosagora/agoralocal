@@ -87,12 +87,6 @@ if [ "$1" = "init" ]; then
     docker run -it -v "$agora_root"/chain/node5/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
     docker run -it -v "$agora_root"/chain/node6/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
 
-    cp -f "$agora_root"/config/el/nodekey/node1.key "$agora_root"/chain/node1/el/geth/nodekey
-    cp -f "$agora_root"/config/el/nodekey/node2.key "$agora_root"/chain/node2/el/geth/nodekey
-    cp -f "$agora_root"/config/el/nodekey/node3.key "$agora_root"/chain/node3/el/geth/nodekey
-    cp -f "$agora_root"/config/el/nodekey/node4.key "$agora_root"/chain/node4/el/geth/nodekey
-    cp -f "$agora_root"/config/el/nodekey/node5.key "$agora_root"/chain/node5/el/geth/nodekey
-
 elif [ "$1" = "start" ]; then
 
     docker-compose -f "$agora_root"/nodes-bellatrix/docker-compose.yml up -d
