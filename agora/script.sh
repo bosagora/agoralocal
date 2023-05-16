@@ -80,12 +80,12 @@ if [ "$1" = "init" ]; then
     cp -rf "$agora_root"/config/el/template/node4/* "$agora_root"/chain/node4/el
     cp -rf "$agora_root"/config/el/template/node5/* "$agora_root"/chain/node5/el
 
-    docker run -it -v "$agora_root"/chain/node1/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
-    docker run -it -v "$agora_root"/chain/node2/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
-    docker run -it -v "$agora_root"/chain/node3/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
-    docker run -it -v "$agora_root"/chain/node4/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
-    docker run -it -v "$agora_root"/chain/node5/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
-    docker run -it -v "$agora_root"/chain/node6/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:v1.0.2 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node1/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:agora_v1.10.23-948287 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node2/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:agora_v1.10.23-948287 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node3/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:agora_v1.10.23-948287 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node4/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:agora_v1.10.23-948287 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node5/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:agora_v1.10.23-948287 --datadir=/data init /config/genesis-merge.json
+    docker run -it -v "$agora_root"/chain/node6/el:/data -v "$agora_root"/config/el:/config --name el-node --rm bosagora/agora-el-node:agora_v1.10.23-948287 --datadir=/data init /config/genesis-merge.json
 
 elif [ "$1" = "start" ]; then
 
@@ -101,7 +101,7 @@ elif [ "$1" = "stop" ]; then
 
 elif [ "$1" = "attach" ]; then
 
-    docker run -it -v "$agora_root"/chain/node1/el:/data -v "$agora_root"/config/el:/config --name el-node-attach --rm bosagora/agora-el-node:v1.0.2 --datadir=/data attach /data/geth.ipc
+    docker run -it -v "$agora_root"/chain/node1/el:/data -v "$agora_root"/config/el:/config --name el-node-attach --rm bosagora/agora-el-node:agora_v1.10.23-948287 --datadir=/data attach /data/geth.ipc
 
 elif [ "$1" = "import" ]; then
 
@@ -224,7 +224,7 @@ elif [ "$1" = "validator-withdraw-35-37" ]; then
     docker run -it --rm \
       -v "$agora_root"/config/cl:/config \
       -v "$agora_root"/wallet/bls_change/35:/withdrawal \
-      bosagora/agora-cl-ctl:agora_v4.0.3-54af4e \
+      bosagora/agora-cl-ctl:agora_v4.0.4-badcf13 \
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
@@ -238,7 +238,7 @@ elif [ "$1" = "validator-withdraw-38" ]; then
     docker run -it --rm \
       -v "$agora_root"/config/cl:/config \
       -v "$agora_root"/wallet/bls_change/38:/withdrawal \
-      bosagora/agora-cl-ctl:agora_v4.0.3-54af4e \
+      bosagora/agora-cl-ctl:agora_v4.0.4-badcf13 \
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
@@ -252,7 +252,7 @@ elif [ "$1" = "validator-withdraw-39" ]; then
     docker run -it --rm \
       -v "$agora_root"/config/cl:/config \
       -v "$agora_root"/wallet/bls_change/39:/withdrawal \
-      bosagora/agora-cl-ctl:agora_v4.0.3-54af4e \
+      bosagora/agora-cl-ctl:agora_v4.0.4-badcf13 \
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
@@ -266,7 +266,7 @@ elif [ "$1" = "validator-exit" ]; then
     docker run -it --rm \
       -v "$agora_root"/config/cl:/config \
       -v "$agora_root"/wallet/val5:/wallet \
-      bosagora/agora-cl-ctl:agora_v4.0.3-54af4e \
+      bosagora/agora-cl-ctl:agora_v4.0.4-badcf13 \
       validator exit \
       --wallet-dir=/wallet \
       --chain-config-file=/config/chain-config-capella.yaml \
