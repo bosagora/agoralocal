@@ -130,6 +130,7 @@ elif [ "$1" = "init-db" ]; then
 
     chmod 0600 "$agora_root"/postgres/.pgpass
     docker run -it --rm --net=host -v "$agora_root"/config/scan:/src -v "$agora_root"/postgres/.pgpass:/root/.pgpass postgres:12.0 psql -f /src/tables.sql -d db -h 0.0.0.0 -U agora > /dev/null
+    docker run -it --rm --net=host -v "$agora_root"/config/scan:/src -v "$agora_root"/postgres/.pgpass:/root/.pgpass postgres:12.0 psql -f /src/migration-20230524.sql -d db -h 0.0.0.0 -U agora > /dev/null
 
 elif [ "$1" = "start-agora-scan" ]; then
 
