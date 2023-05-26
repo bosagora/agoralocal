@@ -83,6 +83,8 @@ services:
     platform: linux/amd64
     container_name: node1-3-val
     image: bosagora/agora-cl-validator:agora_v4.0.4-badcf13
+    ports:
+      - "8081:8081"
     volumes:
       - ../chain/node1/cl:/cl
       - ../wallet/val1:/wallet
@@ -97,6 +99,8 @@ services:
       --proposer-settings-file=/config/private/proposer_config.json
       --wallet-password-file=/config/private/password.txt
       --accept-terms-of-use
+      --monitoring-host=0.0.0.0
+      --monitoring-port=8081
     networks:
       default_network:
         ipv4_address: 172.200.0.23
