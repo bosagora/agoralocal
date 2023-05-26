@@ -28,6 +28,7 @@ frontend:
   jwtSigningSecret: "0123456789abcdef000000000000000000000000000000000000000000000000"
   jwtIssuer: "localblockexplorer"
   jwtValidityInMinutes: 30
+  eth1Explorer: "https://boascan.io"
   server:
     host: "0.0.0.0" # Address to listen on
     port: "3333" # Port to listen on
