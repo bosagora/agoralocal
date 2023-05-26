@@ -21,20 +21,20 @@ create index idx_validator_balances_recent_total_balance
 
 update validator_balances_recent set total_balance = balance + withdrawal;
 
-drop table if exists validator_withdrawal;
-create table validator_withdrawal
+drop table if exists blocks_withdrawals;
+create table blocks_withdrawals
 (
+    block_slot          int    not null,
+    block_root          bytea  not null default '',
     withdrawalindex     int    not null,
-    epoch               int    not null,
-    slot                int    not null,
     validatorindex      int    not null,
     address             bytea  not null,
     amount              bigint not null,
-    primary key (withdrawalindex)
+    primary key (block_slot, block_root, withdrawalindex)
 );
-create index idx_validator_withdrawal_withdrawalindex on validator_withdrawal (withdrawalindex);
-create index idx_validator_withdrawal_epoch on validator_withdrawal (epoch);
-create index idx_validator_withdrawal_slot on validator_withdrawal (slot);
-create index idx_validator_withdrawal_validatorindex on validator_withdrawal (validatorindex);
-create index idx_validator_withdrawal_address on validator_withdrawal (address);
-create index idx_validator_withdrawal_amount on validator_withdrawal (amount);
+create index idx_blocks_withdrawals_slot on blocks_withdrawals (block_slot);
+create index idx_blocks_withdrawals_block_root on blocks_withdrawals (block_root);
+create index idx_blocks_withdrawals_withdrawalindex on blocks_withdrawals (withdrawalindex);
+create index idx_blocks_withdrawals_validatorindex on blocks_withdrawals (validatorindex);
+create index idx_blocks_withdrawals_address on blocks_withdrawals (address);
+create index idx_blocks_withdrawals_amount on blocks_withdrawals (amount);
