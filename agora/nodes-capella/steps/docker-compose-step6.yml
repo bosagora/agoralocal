@@ -71,6 +71,7 @@ services:
       --disable-peer-scorer=true
       --enable-debug-rpc-endpoints=true
       --monitoring-port=8080
+      --rpc-max-page-size=500
     networks:
       default_network:
         ipv4_address: 172.200.0.22
