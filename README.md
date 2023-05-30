@@ -91,17 +91,17 @@ The nodes are changed sequentially one by one as follows.
 ## Attach agora-el node
 
 ```shell
-./agora/script.sh attach
+./agora/cmd attach
 ```
 
 ## Start agora-scan
 
 ```shell
-./agora/script.sh start-agora-scan
+./agora/cmd start-agora-scan
 ```
 
 ## Stop agora-scan
 
 ```shell
-./agora/script.sh stop-agora-scan
+./agora/cmd stop-agora-scan
 ```
