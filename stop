@@ -2,10 +2,10 @@
 
 ./agora-chain-ctrl/cmd stop
 
-./agora/script.sh stop-agora-scan
+./agora/cmd stop-agora-scan
 
-./agora/script.sh stop-boa-scan
+./agora/cmd stop-boa-scan
 
-./agora/script.sh stop-db
+./agora/cmd stop-db
 
-./agora/script.sh stop
+./agora/cmd stop
