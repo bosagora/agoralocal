@@ -4,4 +4,4 @@ bazel run //cmd/prysmctl --config=release -- \
   checkpoint-sync \
   download \
   --chain-config-file /config/chain-config-capella.yaml \
-  --beacon-node-host http://host.docker.internal:3500
+  --beacon-node-host http://node1-2-cl:3500

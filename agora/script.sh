@@ -229,7 +229,7 @@ elif [ "$1" = "validator-withdraw-35-37" ]; then
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
-      --beacon-node-host=http://host.docker.internal:3500 \
+      --beacon-node-host=http://host.docker.internal:3600 \
       --accept-terms-of-use \
       --confirm \
       --path=/withdrawal
@@ -243,7 +243,7 @@ elif [ "$1" = "validator-withdraw-38" ]; then
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
-      --beacon-node-host=http://host.docker.internal:3500 \
+      --beacon-node-host=http://host.docker.internal:3600 \
       --accept-terms-of-use \
       --confirm \
       --path=/withdrawal
@@ -257,7 +257,7 @@ elif [ "$1" = "validator-withdraw-39" ]; then
       validator withdraw \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
-      --beacon-node-host=http://host.docker.internal:3500 \
+      --beacon-node-host=http://host.docker.internal:3600 \
       --accept-terms-of-use \
       --confirm \
       --path=/withdrawal
@@ -272,7 +272,7 @@ elif [ "$1" = "validator-exit" ]; then
       --wallet-dir=/wallet \
       --chain-config-file=/config/chain-config-capella.yaml \
       --config-file=/config/config.yaml \
-      --beacon-rpc-provider=host.docker.internal:4000 \
+      --beacon-rpc-provider=host.docker.internal:4100 \
       --accept-terms-of-use
 
 elif [ "$1" = "start-cl-builder" ]; then

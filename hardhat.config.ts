@@ -51,7 +51,7 @@ task("wait-block", "Wait until the block is created")
                 let oldIdx = 0;
                 const check = async () => {
                     try {
-                        const res = await client.get("http://localhost:3500/eth/v2/beacon/blocks/head");
+                        const res = await client.get("http://localhost:3600/eth/v2/beacon/blocks/head");
                         const current_slot = Number(res.data.data.message.slot);
                         if (oldIdx !== current_slot)
                             console.log(`[${args.title}] slot : ${current_slot}, wait until ${slot}`);
@@ -123,7 +123,7 @@ const config: HardhatUserConfig = {
             gasPrice: 8000000000,
         },
         localhost: {
-            url: "http://localhost:8545",
+            url: "http://localhost:8645",
             chainId: 1337,
             accounts: getAccounts(),
         },

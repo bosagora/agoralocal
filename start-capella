@@ -1,5 +1,8 @@
 #!/bin/bash
 
+docker network rm bosagora_network
+docker network create --subnet=172.200.0.0/16 bosagora_network
+
 ./agora/script.sh stop-agora-scan
 sleep 2
 

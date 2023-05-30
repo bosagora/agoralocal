@@ -60,8 +60,8 @@ indexer:
   indexMissingEpochsOnStartup: false # Check for missing epochs and export them after startup
   node:
     host: "host.docker.internal" # Address of the backend node
-    port: "3500"
-    grpcPort: "4000"
+    port: "3600"
+    grpcPort: "4100"
     type: "prysm"
     pageSize: 500
   eth1Endpoint: "/el/geth.ipc"
