@@ -3,27 +3,27 @@
 docker network rm bosagora_network
 docker network create --subnet=172.200.0.0/16 bosagora_network
 
-./agora/script.sh stop-agora-scan
+./agora/cmd stop-agora-scan
 sleep 2
 
-./agora/script.sh stop-boa-scan
+./agora/cmd stop-boa-scan
 sleep 2
 
-./agora/script.sh stop-db
+./agora/cmd stop-db
 sleep 2
 
-./agora/script.sh stop
+./agora/cmd stop
 sleep 2
 
-./agora/script.sh start-db
+./agora/cmd start-db
 sleep 5
 
-./agora/script.sh init-db
+./agora/cmd init-db
 sleep 5
 
-./agora/script.sh init
+./agora/cmd init
 
-./agora/script.sh start
+./agora/cmd start
 
 sleep 5
 
@@ -31,14 +31,14 @@ npm run deploy:commons_budeget
 npm run deploy:deposit
 npm run staking
 
-./agora/script.sh start-agora-scan
+./agora/cmd start-agora-scan
 
 sleep 5
 
 while true; do
   case "$1" in
     -b|--boascan)
-      ./agora/script.sh start-boa-scan
+      ./agora/cmd start-boa-scan
       break;;
      *)
       break;;
