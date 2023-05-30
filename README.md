@@ -2,6 +2,12 @@
 
 ## Preparing
 
+### Install submodules
+
+```shell
+git submodule update --init
+```
+
 ### Install mpm modules
 
 ```shell
