@@ -11,7 +11,7 @@ services:
       -verbosity=1
       -addr=:30301
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.11
 
   clboot:
@@ -24,14 +24,14 @@ services:
       --fork-version 2F1C0000
       --private 9dab6d31b7fd636348b29c8c0c8ee3699e1f89bfe06e62c795821156040b969e
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.12
 
   node1-1-el:
     container_name: node1-1-el
     image: bosagora/agora-el-node:agora_v1.10.23-948287
     ports:
-      - "8545:8545"
+      - "8645:8545"
     restart: always
     volumes:
       - ../chain/node1/el:/data
@@ -47,7 +47,7 @@ services:
       --mine=true
       --miner.etherbase=0xF85B2dbA83A08DEe6E24E4461E0334e7384896F9
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.21
     depends_on:
       - elboot
@@ -57,9 +57,9 @@ services:
     container_name: node1-2-cl
     image: bosagora/agora-cl-node:v1.0.3
     ports:
-      - "3500:3500"
-      - "4000:4000"
-      - "8080:8080"
+      - "3600:3500"
+      - "4100:4000"
+      - "8180:8080"
     volumes:
       - ../chain/node1/cl:/cl
       - ../chain/node1/el:/el
@@ -78,7 +78,7 @@ services:
       --monitoring-port=8080
       --rpc-max-page-size=500
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.22
     depends_on:
       - clboot
@@ -89,7 +89,7 @@ services:
     container_name: node1-3-val
     image: bosagora/agora-cl-validator:v1.0.3
     ports:
-      - "8081:8081"
+      - "8181:8081"
     volumes:
       - ../chain/node1/cl:/cl
       - ../wallet/val1:/wallet
@@ -107,7 +107,7 @@ services:
       --monitoring-host=0.0.0.0
       --monitoring-port=8081
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.23
     depends_on:
       - node1-2-cl
@@ -129,7 +129,7 @@ services:
       --mine=true
       --miner.etherbase=0x93BFD12E0050B16D69f752dfd344Ebd174bd3159
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.31
     depends_on:
       - elboot
@@ -154,7 +154,7 @@ services:
       --subscribe-all-subnets=true
       --disable-peer-scorer=true
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.32
     depends_on:
       - clboot
@@ -179,7 +179,7 @@ services:
       --wallet-password-file=/config/private/password.txt
       --accept-terms-of-use
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.33
     depends_on:
       - node2-2-cl
@@ -201,7 +201,7 @@ services:
       --mine=true
       --miner.etherbase=0xb7D44Dc8cbC8119552608E5AB4E9e59a6120Ccf0
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.41
     depends_on:
       - elboot
@@ -227,7 +227,7 @@ services:
       --subscribe-all-subnets=true
       --disable-peer-scorer=true
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.42
     depends_on:
       - clboot
@@ -252,7 +252,7 @@ services:
       --wallet-password-file=/config/private/password.txt
       --accept-terms-of-use
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.43
     depends_on:
       - node3-2-cl
@@ -269,7 +269,7 @@ services:
       --datadir=/data
       --syncmode=full
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.51
     depends_on:
       - elboot
@@ -296,7 +296,7 @@ services:
       --subscribe-all-subnets=true
       --disable-peer-scorer=true
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.52
     depends_on:
       - clboot
@@ -321,7 +321,7 @@ services:
       --wallet-password-file=/config/private/password.txt
       --accept-terms-of-use
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.53
     depends_on:
       - node4-2-cl
@@ -338,7 +338,7 @@ services:
       --datadir=/data
       --syncmode=full
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.61
     depends_on:
       - elboot
@@ -365,7 +365,7 @@ services:
       --accept-terms-of-use
       --disable-peer-scorer=true
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.62
     depends_on:
       - clboot
@@ -390,14 +390,13 @@ services:
       --wallet-password-file=/config/private/password.txt
       --accept-terms-of-use
     networks:
-      default_network:
+      bosagora_network:
         ipv4_address: 172.200.0.63
     depends_on:
       - node5-2-cl
 
 networks:
-  default_network:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.200.0.0/16
+  bosagora_network:
+    driver: bridge
+    external: true
+    internal: true
