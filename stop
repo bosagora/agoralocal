@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./agora-chain-ctrl/cmd stop
+
 ./agora/script.sh stop-agora-scan
 
 ./agora/script.sh stop-boa-scan

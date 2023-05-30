@@ -3,6 +3,8 @@
 docker network rm bosagora_network
 docker network create --subnet=172.200.0.0/16 bosagora_network
 
+./agora-chain-ctrl/cmd stop
+
 ./agora/script.sh stop-agora-scan
 sleep 2
 
@@ -74,6 +76,10 @@ function change_step() {
 npx hardhat wait-block --title "Step 1, (GENESIS + 0)" --fork GENESIS --offset 0 --network localhost
 
 npx hardhat wait-block --title "Step 1, (BELLATRIX + 0)" --fork BELLATRIX --offset 0 --network localhost
+
+./agora-chain-ctrl/cmd staking
+
+./agora-chain-ctrl/cmd start
 
 # Step 2
 npx hardhat wait-block --title "Step 2, (BELLATRIX + 35)" --fork BELLATRIX --offset 35 --network localhost

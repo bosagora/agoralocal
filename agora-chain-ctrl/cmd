@@ -33,7 +33,28 @@ if [ $dirname = "agora-chain-ctrl" ]; then
   agora_root="$(pwd)"
 fi
 
-if [ "$1" = "new-mnemonic" ]; then
+if [ "$1" = "start" ]; then
+
+    cp -f "$agora_root"/../agora/config/cl/chain-config-capella.yaml "$agora_root"/../agora-chain/root/config/cl/chain-config.yaml
+    cp -f "$agora_root"/../agora/config/el/genesis-shanghai.json "$agora_root"/../agora-chain/root/config/el/genesis.json
+    cp -rf "$agora_root"/wallet "$agora_root"/../agora-chain/root/
+
+    cd "$agora_root"/../agora-chain/
+    if [ "$system" == "linux" ]; then
+        sudo rm -rf root/chain
+    else
+        rm -rf root/chain
+    fi
+    ./agora.sh el-node init
+    sleep 2
+    ./agora.sh docker-compose-monitoring up
+
+elif [ "$1" = "stop" ]; then
+
+    cd "$agora_root"/../agora-chain/
+    ./agora.sh docker-compose-monitoring down
+
+elif [ "$1" = "new-mnemonic" ]; then
 
     docker run -it --rm \
       -v "$agora_root"/validator_keys:/app/validator_keys \
