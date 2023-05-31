@@ -1,19 +1,40 @@
 #!/bin/bash
 
-docker network rm bosagora_network
-docker network create --subnet=172.200.0.0/16 bosagora_network
+if [[ -z $(docker network ls | grep "bosagora_network") ]]
+then
+  docker network create --subnet=172.200.0.0/16 bosagora_network
+  sleep 2
+fi
 
-./agora/cmd stop-agora-scan
-sleep 2
+if [[ -n $(docker-compose ls | grep "agora-chain") ]]
+then
+  ./agora-chain-ctrl/cmd stop
+  sleep 2
+fi
 
-./agora/cmd stop-boa-scan
-sleep 2
+if [[ -n $(docker-compose ls | grep "agora-scan ") ]]
+then
+  ./agora/cmd stop-agora-scan
+  sleep 2
+fi
 
-./agora/cmd stop-db
-sleep 2
+if [[ -n $(docker-compose ls | grep "boa-scan") ]]
+then
+  ./agora/cmd stop-boa-scan
+  sleep 2
+fi
 
-./agora/cmd stop
-sleep 2
+if [[ -n $(docker-compose ls | grep "postgres") ]]
+then
+  ./agora/cmd stop-db
+  sleep 2
+fi
+
+if [[ -n $(docker-compose ls | grep "nodes-bellatrix\|nodes-capella") ]]
+then
+  ./agora/cmd stop
+  sleep 2
+fi
 
 ./agora/cmd start-db
 sleep 5
