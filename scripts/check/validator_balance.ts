@@ -31,7 +31,7 @@ async function main() {
     let newEpoch = 0;
     while (true) {
         try {
-            const url = URI("http://localhost:8080/").filename("metrics").toString();
+            const url = URI("http://localhost:8180/").filename("metrics").toString();
             const res = await client.get(url);
 
             const data: string = res.data;

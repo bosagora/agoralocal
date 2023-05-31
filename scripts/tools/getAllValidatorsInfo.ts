@@ -60,7 +60,7 @@ async function main() {
         const keyIndex = Number(s[3]);
         const validatorKey = keyData.pubkey;
         const res = await client.get(
-            `http://localhost:3500/eth/v1/beacon/states/head/validators/${prefix0X(validatorKey)}`
+            `http://localhost:3600/eth/v1/beacon/states/head/validators/${prefix0X(validatorKey)}`
         );
         const balance = res.data.data.balance;
         const credentials = res.data.data.validator.withdrawal_credentials.replace("0x", "");

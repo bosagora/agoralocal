@@ -9,7 +9,7 @@ async function main() {
         const testnet_res = await client.get("https://testnet-sync.bosagora.org/eth/v2/debug/beacon/states/genesis");
         console.log(`test net : ${testnet_res.data.data.genesis_validators_root}`);
 
-        const devnet_res = await client.get("http://localhost:3500/eth/v2/debug/beacon/states/genesis");
+        const devnet_res = await client.get("http://localhost:3600/eth/v2/debug/beacon/states/genesis");
         console.log(`dev net  : ${devnet_res.data.data.genesis_validators_root}`);
     } catch (error) {
         console.log(error);

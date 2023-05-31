@@ -80,7 +80,7 @@ async function main() {
     try {
         const client = axios.create();
         const res = await client.get(
-            `http://localhost:3500/eth/v1/beacon/states/head/validators/${prefix0X(validator_key)}`
+            `http://localhost:3600/eth/v1/beacon/states/head/validators/${prefix0X(validator_key)}`
         );
         console.log(beautify(JSON.stringify(res.data), { format: "json" }));
     } catch (error) {
