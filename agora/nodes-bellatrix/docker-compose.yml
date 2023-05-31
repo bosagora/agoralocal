@@ -3,7 +3,7 @@ services:
   elboot:
     platform: linux/amd64
     container_name: elboot
-    image: bosagora/agora-el-bootnode:agora_v1.11.6-b360ab
+    image: bosagora/agora-el-bootnode:agora_v1.10.23-948287
     restart: always
     volumes:
       - ../config/el:/config
@@ -31,7 +31,7 @@ services:
   node1-1-el:
     platform: linux/amd64
     container_name: node1-1-el
-    image: bosagora/agora-el-node:agora_v1.11.6-b360ab
+    image: bosagora/agora-el-node:agora_v1.12.0-66e599
     ports:
       - "8645:8545"
     restart: always
@@ -117,7 +117,7 @@ services:
   node2-1-el:
     platform: linux/amd64
     container_name: node2-1-el
-    image: bosagora/agora-el-node:agora_v1.11.6-b360ab
+    image: bosagora/agora-el-node:agora_v1.12.0-66e599
     restart: always
     volumes:
       - ../chain/node2/el:/data
@@ -190,7 +190,7 @@ services:
   node3-1-el:
     platform: linux/amd64
     container_name: node3-1-el
-    image: bosagora/agora-el-node:agora_v1.11.6-b360ab
+    image: bosagora/agora-el-node:agora_v1.12.0-66e599
     restart: always
     volumes:
       - ../chain/node3/el:/data
@@ -264,7 +264,7 @@ services:
   node4-1-el:
     platform: linux/amd64
     container_name: node4-1-el
-    image: bosagora/agora-el-node:agora_v1.11.6-b360ab
+    image: bosagora/agora-el-node:agora_v1.12.0-66e599
     restart: always
     volumes:
       - ../chain/node4/el:/data
@@ -339,7 +339,7 @@ services:
   node5-1-el:
     platform: linux/amd64
     container_name: node5-1-el
-    image: bosagora/agora-el-node:agora_v1.11.6-b360ab
+    image: bosagora/agora-el-node:agora_v1.12.0-66e599
     restart: always
     volumes:
       - ../chain/node5/el:/data
@@ -415,7 +415,7 @@ services:
   node6-1-el:
     platform: linux/amd64
     container_name: node6-1-el
-    image: bosagora/agora-el-node:agora_v1.11.6-b360ab
+    image: bosagora/agora-el-node:agora_v1.12.0-66e599
     restart: always
     volumes:
       - ../chain/node6/el:/data

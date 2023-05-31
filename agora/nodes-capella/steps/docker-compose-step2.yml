@@ -333,7 +333,7 @@ services:
 
   node5-1-el:
     container_name: node5-1-el
-    image: bosagora/agora-el-node:agora_v1.11.6-b360ab
+    image: bosagora/agora-el-node:agora_v1.12.0-66e599
     restart: always
     volumes:
       - ../chain/node5/el:/data
@@ -355,7 +355,7 @@ services:
   node5-2-cl:
     platform: linux/amd64
     container_name: node5-2-cl
-    image: bosagora/agora-cl-node:agora_v4.0.4-badcf13
+    image: bosagora/agora-cl-node:agora_v4.0.5-ceb45d
     volumes:
       - ../chain/node5/cl:/cl
       - ../chain/node5/el:/el
@@ -379,7 +379,7 @@ services:
   node5-3-val:
     platform: linux/amd64
     container_name: node5-3-val
-    image: bosagora/agora-cl-validator:agora_v4.0.4-badcf13
+    image: bosagora/agora-cl-validator:agora_v4.0.5-ceb45d
     volumes:
       - ../chain/node5/cl:/cl
       - ../wallet/val5:/wallet

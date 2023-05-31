@@ -36,8 +36,8 @@ When 'FAST', the creation period of the block is 5 seconds for agora-el and 5 se
 
 The Docker image below is used.
 - agora-el  
-  - bosagora/agora-el-bootnode:agora_v1.11.6-b360ab
-  - bosagora/agora-el-node:agora_v1.11.6-b360ab
+  - bosagora/agora-el-bootnode:agora_v1.10.23-948287
+  - bosagora/agora-el-node:agora_v1.12.0-66e599
 
 - agora-cl
   - bosagora/agora-cl-bootnode:v1.0.3
@@ -67,20 +67,22 @@ The Docker image below is used.
 #### Step 2 ~ Step 6
 The nodes are changed sequentially one by one as follows.
 - agora-el
-    - bosagora/agora-el-node:agora_v1.10.23-948287 -> bosagora/agora-el-node:agora_v1.11.6-b360ab
-- agora-el
-    - bosagora/agora-cl-node:v1.0.3 -> bosagora/agora-cl-node:agora_v4.0.4-badcf13
-    - bosagora/agora-cl-validator:v1.0.3 -> bosagora/agora-cl-validator:agora_v4.0.4-badcf13
+    - bosagora/agora-el-bootnode:agora_v1.10.23-948287
+    - bosagora/agora-el-node:agora_v1.10.23-948287 -> bosagora/agora-el-node:agora_v1.12.0-66e599
+- agora-cl
+    - bosagora/agora-cl-bootnode:v1.0.3
+    - bosagora/agora-cl-node:v1.0.3 -> bosagora/agora-cl-node:agora_v4.0.5-ceb45d
+    - bosagora/agora-cl-validator:v1.0.3 -> bosagora/agora-cl-validator:agora_v4.0.5-ceb45d
 
 #### After Step 6
 - agora-el
     - bosagora/agora-el-bootnode:agora_v1.10.23-948287
-    - bosagora/agora-el-node:agora_v1.11.6-b360ab
+    - bosagora/agora-el-node:agora_v1.12.0-66e599
 
 - agora-cl
     - bosagora/agora-cl-bootnode:v1.0.3
-    - bosagora/agora-cl-node:agora_v4.0.4-badcf13
-    - bosagora/agora-cl-validator:agora_v4.0.4-badcf13
+    - bosagora/agora-cl-node:agora_v4.0.5-ceb45d
+    - bosagora/agora-cl-validator:agora_v4.0.5-ceb45d
 
 ### Command
 

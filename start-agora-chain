@@ -84,7 +84,7 @@ function change_step() {
   docker run -it \
   -v "$(pwd)"/agora/chain/node"$2"/el:/data \
   -v "$(pwd)"/agora/config/el:/config \
-  --name el-node --rm bosagora/agora-el-node:agora_v1.11.6-b360ab \
+  --name el-node --rm bosagora/agora-el-node:agora_v1.12.0-66e599 \
   --datadir=/data init /config/genesis-shanghai.json
 
   docker-compose -f "$(pwd)"/agora/nodes-capella/docker-compose.yml up -d node"$2"-1-el
