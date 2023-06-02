@@ -1,0 +1,34 @@
+version: '3.3'
+services:
+  redis_db:
+    extends:
+      file: ./services/docker-compose-redis.yml
+      service: redis_db
+
+  boascan:
+    depends_on:
+      - redis_db
+    image: bosagora/boa-scan:agora-arm64
+    restart: always
+    stop_grace_period: 5m
+    container_name: 'boascan'
+    command: bash -c "bin/blockscout eval \"Elixir.Explorer.ReleaseTasks.create_and_migrate()\" && bin/blockscout start"
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    env_file:
+      - ../config/boascan/common-boascan.env
+    environment:
+      MICROSERVICE_SC_VERIFIER_ENABLED: 'false'
+      MICROSERVICE_VISUALIZE_SOL2UML_ENABLED: 'false'
+      MICROSERVICE_SIG_PROVIDER_ENABLED: 'false'
+      INDEXER_DISABLE_INTERNAL_TRANSACTIONS_FETCHER: 'true'
+    ports:
+      - "14000:14000"
+    volumes:
+      - ./logs/:/app/logs/
+    networks:
+      - default_network
+
+networks:
+  default_network:
+    driver: bridge

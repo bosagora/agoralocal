@@ -27,6 +27,15 @@ cygwin*) system="windows" ;;
 esac
 readonly system
 
+architecture=""
+case $(uname -m) in
+    i386)    architecture="amd64" ;;
+    i686)    architecture="amd64" ;;
+    x86_64)  architecture="amd64" ;;
+    aarch64) architecture="amd64" ;;
+    arm)     architecture="arm64" ;;
+esac
+
 dirname=${PWD##*/}
 agora_root="$(pwd)/agora"
 if [ $dirname = "agora" ]; then
@@ -311,11 +320,19 @@ elif [ "$1" = "stop-bs-builder" ]; then
 
 elif [ "$1" = "start-boa-scan" ]; then
 
-    docker-compose -f $agora_root/boa-scan/docker-compose.yml up -d
+    if [ "$architecture" == "amd64" ]; then
+        docker-compose -f $agora_root/boa-scan/docker-compose-amd64.yml up -d
+    else
+        docker-compose -f $agora_root/boa-scan/docker-compose-arm64.yml up -d
+    fi
 
 elif [ "$1" = "stop-boa-scan" ]; then
 
-    docker-compose -f $agora_root/boa-scan/docker-compose.yml down
+    if [ "$architecture" == "amd64" ]; then
+        docker-compose -f $agora_root/boa-scan/docker-compose-amd64.yml down
+    else
+        docker-compose -f $agora_root/boa-scan/docker-compose-arm64.yml down
+    fi
 
 else
 
