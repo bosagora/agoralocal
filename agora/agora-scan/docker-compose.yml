@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   agora-scan-explorer:
-    image: bosagora/agora-scan:agora-48e56d
+    image: bosagora/agora-scan:agora-282184
     container_name: agora-scan-explorer
     ports:
       - "3333:3333"
@@ -17,7 +17,7 @@ services:
       - default_network
 
   agora-scan-statistics:
-    image: bosagora/agora-scan:agora-48e56d
+    image: bosagora/agora-scan:agora-282184
     container_name: agora-scan-statistics
     restart: always
     extra_hosts:
