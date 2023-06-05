@@ -22,6 +22,17 @@ create index idx_validator_balances_recent_total_balance
 update validator_balances_recent
 set total_balance = balance + withdrawal;
 
+alter table validators
+    add withdrawal bigint default 0 not null;
+
+alter table validators
+    add withdrawal1d bigint default 0 not null;
+
+alter table validators
+    add withdrawal7d bigint default 0 not null;
+
+alter table validators
+    add withdrawal31d bigint default 0 not null;
 
 CREATE TABLE IF NOT EXISTS
     blocks_withdrawals
