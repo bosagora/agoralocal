@@ -19,8 +19,10 @@ services:
     stdin_open: true
     tty: true
     networks:
-      - default_network
+      - bosagora_network
 
 networks:
-  default_network:
+  bosagora_network:
     driver: bridge
+    external: true
+    internal: true

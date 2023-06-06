@@ -14,7 +14,7 @@ services:
       - ../config/scan:/app/config
     command: sh -c "/app/explorer --config /app/config/default.config.yml"
     networks:
-      - default_network
+      - bosagora_network
 
   agora-scan-statistics:
     image: bosagora/agora-scan:agora-282184
@@ -27,8 +27,10 @@ services:
       - ../config/scan:/app/config
     command: sh -c "/app/statistics --config /app/config/default.config.yml"
     networks:
-      - default_network
+      - bosagora_network
 
 networks:
-  default_network:
+  bosagora_network:
     driver: bridge
+    external: true
+    internal: true
