@@ -336,6 +336,10 @@ services:
     platform: linux/amd64
     container_name: node5-2-cl
     image: bosagora/agora-cl-node:agora_v4.0.5-ceb45d
+    ports:
+      - "3650:3500"
+      - "4150:4000"
+      - "8150:8080"
     volumes:
       - ../chain/node5/cl:/cl
       - ../chain/node5/el:/el
@@ -349,6 +353,7 @@ services:
       --contract-deployment-block=8
       --accept-terms-of-use
       --disable-peer-scorer=true
+      --monitoring-port=8080
     networks:
       bosagora_network:
         ipv4_address: 172.200.0.62
@@ -360,6 +365,8 @@ services:
     platform: linux/amd64
     container_name: node5-3-val
     image: bosagora/agora-cl-validator:agora_v4.0.5-ceb45d
+    ports:
+      - "8151:8081"
     volumes:
       - ../chain/node5/cl:/cl
       - ../wallet/val5:/wallet
@@ -374,6 +381,8 @@ services:
       --proposer-settings-file=/config/private/proposer_config.json
       --wallet-password-file=/config/private/password.txt
       --accept-terms-of-use
+      --monitoring-host=0.0.0.0
+      --monitoring-port=8081
     networks:
       bosagora_network:
         ipv4_address: 172.200.0.63
