@@ -78,4 +78,54 @@ elif [ "$1" = "staking" ]; then
 
     npx hardhat run "$agora_root"/scripts/staking-agora-chain.ts --network localhost
 
+elif [ "$1" = "replace" ]; then
+
+    cd "$agora_root"/../agora-chain/
+
+    if [[ -n $(docker-compose ls | grep "docker-compose-monitoring") ]]
+    then
+      ./agora.sh docker-compose-monitoring down
+      sleep 2
+    fi
+
+    cp -f "$agora_root"/../agora/config/cl/chain-config-capella.yaml "$agora_root"/../agora-chain/root/config/cl/chain-config.yaml
+    cp -f "$agora_root"/../agora/config/el/genesis-shanghai.json "$agora_root"/../agora-chain/root/config/el/genesis.json
+
+    cp -rf "$agora_root"/../agora/wallet/val5 "$agora_root"/../agora-chain/root/
+    rm -rf "$agora_root"/../agora-chain/root/wallet
+    mv "$agora_root"/../agora-chain/root/val5 "$agora_root"/../agora-chain/root/wallet
+    cp -f "$agora_root"/../agora/config/cl/private/password.txt "$agora_root"/../agora-chain/root/config/cl/password.txt
+
+    if [ "$system" == "linux" ]; then
+        sudo rm -rf root/chain
+    else
+        rm -rf root/chain
+    fi
+
+    mkdir -p root/chain
+
+    if docker ps | grep -q 'node5-3-val'
+    then
+        docker stop node5-3-val
+        docker rm node5-3-val
+    fi
+
+    if docker ps | grep -q 'node5-2-cl'
+    then
+        docker stop node5-2-cl
+        docker rm node5-2-cl
+    fi
+
+    if docker ps | grep -q 'node5-1-el'
+    then
+        docker stop node5-1-el
+        docker rm node5-1-el
+    fi
+
+    cp -rf "$agora_root"/../agora/chain/node5/* "$agora_root"/../agora-chain/root/chain
+
+    sleep 2
+
+    ./agora.sh docker-compose-monitoring up -d
+
 fi
