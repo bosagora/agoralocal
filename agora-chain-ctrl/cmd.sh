@@ -29,7 +29,7 @@ readonly system
 
 dirname=${PWD##*/}
 agora_root="$(pwd)/agora-chain-ctrl"
-if [ $dirname = "agora-chain-ctrl" ]; then
+if [ "$dirname" = "agora-chain-ctrl" ]; then
   agora_root="$(pwd)"
 fi
 
@@ -47,7 +47,7 @@ if [ "$1" = "start" ]; then
     fi
     ./agora.sh el-node init
     sleep 2
-    ./agora.sh docker-compose-monitoring up
+    ./agora.sh docker-compose-monitoring up -d
 
 elif [ "$1" = "stop" ]; then
 

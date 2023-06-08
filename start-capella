@@ -1,36 +1,36 @@
 #!/bin/bash
 
-if [[ -z $(docker network ls | grep "bosagora_network") ]]
+if ! docker network ls | grep -q 'bosagora_network'
 then
   docker network create --subnet=172.200.0.0/16 bosagora_network
   sleep 2
 fi
 
-if [[ -n $(docker-compose ls | grep "agora-chain") ]]
+if docker-compose ls | grep -q 'agora-chain'
 then
   ./agora-chain-ctrl/cmd.sh stop
   sleep 2
 fi
 
-if [[ -n $(docker-compose ls | grep "agora-scan ") ]]
+if docker-compose ls | grep -q 'agora-scan'
 then
   ./agora/cmd.sh stop-agora-scan
   sleep 2
 fi
 
-if [[ -n $(docker-compose ls | grep "boa-scan") ]]
+if docker-compose ls | grep -q 'boa-scan'
 then
   ./agora/cmd.sh stop-boa-scan
   sleep 2
 fi
 
-if [[ -n $(docker-compose ls | grep "postgres") ]]
+if docker-compose ls | grep -q 'postgres'
 then
   ./agora/cmd.sh stop-db
   sleep 2
 fi
 
-if [[ -n $(docker-compose ls | grep "nodes-bellatrix\|nodes-capella") ]]
+if docker-compose ls | grep -q 'nodes-bellatrix\|nodes-capella'
 then
   ./agora/cmd.sh stop
   sleep 2
