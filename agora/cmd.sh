@@ -38,7 +38,7 @@ esac
 
 dirname=${PWD##*/}
 agora_root="$(pwd)/agora"
-if [ $dirname = "agora" ]; then
+if [ "$dirname" = "agora" ]; then
   agora_root="$(pwd)"
 fi
 
@@ -321,17 +321,17 @@ elif [ "$1" = "stop-bs-builder" ]; then
 elif [ "$1" = "start-boa-scan" ]; then
 
     if [ "$architecture" == "amd64" ]; then
-        docker-compose -f $agora_root/boa-scan/docker-compose-amd64.yml up -d
+        docker-compose -f "$agora_root"/boa-scan/docker-compose-amd64.yml up -d
     else
-        docker-compose -f $agora_root/boa-scan/docker-compose-arm64.yml up -d
+        docker-compose -f "$agora_root"/boa-scan/docker-compose-arm64.yml up -d
     fi
 
 elif [ "$1" = "stop-boa-scan" ]; then
 
     if [ "$architecture" == "amd64" ]; then
-        docker-compose -f $agora_root/boa-scan/docker-compose-amd64.yml down
+        docker-compose -f "$agora_root"/boa-scan/docker-compose-amd64.yml down
     else
-        docker-compose -f $agora_root/boa-scan/docker-compose-arm64.yml down
+        docker-compose -f "$agora_root"/boa-scan/docker-compose-arm64.yml down
     fi
 
 else
