@@ -8,41 +8,41 @@ fi
 
 if [[ -n $(docker-compose ls | grep "agora-chain") ]]
 then
-  ./agora-chain-ctrl/cmd stop
+  ./agora-chain-ctrl/cmd.sh stop
   sleep 2
 fi
 
 if [[ -n $(docker-compose ls | grep "agora-scan ") ]]
 then
-  ./agora/cmd stop-agora-scan
+  ./agora/cmd.sh stop-agora-scan
   sleep 2
 fi
 
 if [[ -n $(docker-compose ls | grep "boa-scan") ]]
 then
-  ./agora/cmd stop-boa-scan
+  ./agora/cmd.sh stop-boa-scan
   sleep 2
 fi
 
 if [[ -n $(docker-compose ls | grep "postgres") ]]
 then
-  ./agora/cmd stop-db
+  ./agora/cmd.sh stop-db
   sleep 2
 fi
 
 if [[ -n $(docker-compose ls | grep "nodes-bellatrix\|nodes-capella") ]]
 then
-  ./agora/cmd stop
+  ./agora/cmd.sh stop
   sleep 2
 fi
 
-./agora/cmd start-db
+./agora/cmd.sh start-db
 sleep 5
 
-./agora/cmd init-db
+./agora/cmd.sh init-db
 sleep 5
 
-./agora/cmd init
+./agora/cmd.sh init
 
 echo "[Step 1]"
 
@@ -54,7 +54,7 @@ sleep 5
 while true; do
   case "$1" in
     -b|--boascan)
-      ./agora/cmd start-boa-scan
+      ./agora/cmd.sh start-boa-scan
       break;;
      *)
       break;;
@@ -67,7 +67,7 @@ npm run deploy:commons_budeget
 npm run deploy:deposit
 npm run staking
 
-./agora/cmd start-agora-scan
+./agora/cmd.sh start-agora-scan
 
 
 function change_step() {

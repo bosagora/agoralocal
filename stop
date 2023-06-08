@@ -2,27 +2,27 @@
 
 if [[ -n $(docker-compose ls | grep "agora-chain") ]]
 then
-  ./agora-chain-ctrl/cmd stop
+  ./agora-chain-ctrl/cmd.sh stop
 fi
 
 if [[ -n $(docker-compose ls | grep "agora-scan ") ]]
 then
-  ./agora/cmd stop-agora-scan
+  ./agora/cmd.sh stop-agora-scan
 fi
 
 if [[ -n $(docker-compose ls | grep "boa-scan") ]]
 then
-  ./agora/cmd stop-boa-scan
+  ./agora/cmd.sh stop-boa-scan
 fi
 
 if [[ -n $(docker-compose ls | grep "postgres") ]]
 then
-  ./agora/cmd stop-db
+  ./agora/cmd.sh stop-db
 fi
 
 if [[ -n $(docker-compose ls | grep "nodes-bellatrix\|nodes-capella") ]]
 then
-  ./agora/cmd stop
+  ./agora/cmd.sh stop
 fi
 
 if [[ -n $(docker network ls | grep "bosagora_network") ]]
