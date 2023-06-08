@@ -102,12 +102,12 @@ elif [ "$1" = "start" ]; then
 
 elif [ "$1" = "stop" ]; then
 
-    if [[ -n $(docker-compose ls | grep "nodes-bellatrix") ]]
+    if docker-compose ls | grep -q 'nodes-bellatrix'
     then
         docker-compose -f "$agora_root"/nodes-bellatrix/docker-compose.yml down
     fi
 
-    if [[ -n $(docker-compose ls | grep "nodes-capella") ]]
+    if docker-compose ls | grep -q 'nodes-capella'
     then
         docker-compose -f "$agora_root"/nodes-capella/docker-compose.yml down
     fi
