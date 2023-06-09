@@ -35,15 +35,18 @@ fi
 
 if [ "$1" = "start" ]; then
 
-    cp -f "$agora_root"/../agora/config/cl/chain-config-capella.yaml "$agora_root"/../agora-chain/root/config/cl/chain-config.yaml
-    cp -f "$agora_root"/../agora/config/el/genesis-shanghai.json "$agora_root"/../agora-chain/root/config/el/genesis.json
-    cp -rf "$agora_root"/wallet "$agora_root"/../agora-chain/root/
+    cp -f "$agora_root"/../agora/config/cl/chain-config-capella.yaml "$agora_root"/../agora-chain/networks/devnet/root/config/cl/chain-config.yaml
+    cp -f "$agora_root"/../agora/config/el/genesis-shanghai.json "$agora_root"/../agora-chain/networks/devnet/root/config/el/genesis.json
+    cp -rf "$agora_root"/wallet "$agora_root"/../agora-chain/networks/devnet/root/
 
     cd "$agora_root"/../agora-chain/
+
+    ./agora.sh network devnet
+
     if [ "$system" == "linux" ]; then
-        sudo rm -rf root/chain
+        sudo rm -rf networks/devnet/root/chain
     else
-        rm -rf root/chain
+        rm -rf networks/devnet/root/chain
     fi
     ./agora.sh el-node init
     sleep 2
@@ -82,27 +85,29 @@ elif [ "$1" = "replace" ]; then
 
     cd "$agora_root"/../agora-chain/
 
+    ./agora.sh network devnet
+
     if [[ -n $(docker-compose ls | grep "docker-compose-monitoring") ]]
     then
       ./agora.sh docker-compose-monitoring down
       sleep 2
     fi
 
-    cp -f "$agora_root"/../agora/config/cl/chain-config-capella.yaml "$agora_root"/../agora-chain/root/config/cl/chain-config.yaml
-    cp -f "$agora_root"/../agora/config/el/genesis-shanghai.json "$agora_root"/../agora-chain/root/config/el/genesis.json
+    cp -f "$agora_root"/../agora/config/cl/chain-config-capella.yaml "$agora_root"/../agora-chain/networks/devnet/root/config/cl/chain-config.yaml
+    cp -f "$agora_root"/../agora/config/el/genesis-shanghai.json "$agora_root"/../agora-chain/networks/devnet/root/config/el/genesis.json
 
-    cp -rf "$agora_root"/../agora/wallet/val5 "$agora_root"/../agora-chain/root/
-    rm -rf "$agora_root"/../agora-chain/root/wallet
-    mv "$agora_root"/../agora-chain/root/val5 "$agora_root"/../agora-chain/root/wallet
-    cp -f "$agora_root"/../agora/config/cl/private/password.txt "$agora_root"/../agora-chain/root/config/cl/password.txt
+    cp -rf "$agora_root"/../agora/wallet/val5 "$agora_root"/../agora-chain/networks/devnet/root/
+    rm -rf "$agora_root"/../agora-chain/networks/devnet/root/wallet
+    mv "$agora_root"/../agora-chain/networks/devnet/root/val5 "$agora_root"/../agora-chain/networks/devnet/root/wallet
+    cp -f "$agora_root"/../agora/config/cl/private/password.txt "$agora_root"/../agora-chain/networks/devnet/root/config/cl/password.txt
 
     if [ "$system" == "linux" ]; then
-        sudo rm -rf root/chain
+        sudo rm -rf networks/devnet/root/chain
     else
-        rm -rf root/chain
+        rm -rf networks/devnet/root/chain
     fi
 
-    mkdir -p root/chain
+    mkdir -p networks/devnet/root/chain
 
     if docker ps | grep -q 'node5-3-val'
     then
@@ -122,7 +127,7 @@ elif [ "$1" = "replace" ]; then
         docker rm node5-1-el
     fi
 
-    cp -rf "$agora_root"/../agora/chain/node5/* "$agora_root"/../agora-chain/root/chain
+    cp -rf "$agora_root"/../agora/chain/node5/* "$agora_root"/../agora-chain/networks/devnet/root/chain
 
     sleep 2
 
