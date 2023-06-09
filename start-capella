@@ -6,7 +6,7 @@ then
   sleep 2
 fi
 
-if docker-compose ls | grep -q 'agora-chain'
+if docker-compose ls | grep -q 'devnet'
 then
   ./agora-chain-ctrl/cmd.sh stop
   sleep 2

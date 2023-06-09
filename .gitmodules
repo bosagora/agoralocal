@@ -1,4 +1,4 @@
 [submodule "agora-chain"]
 	path = agora-chain
 	url = https://github.com/bosagora/agora-chain.git
-	branch = devnet
+	branch = v0.x.x

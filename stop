@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ -n $(docker-compose ls | grep "agora-chain") ]]
+if [[ -n $(docker-compose ls | grep "devnet") ]]
 then
   ./agora-chain-ctrl/cmd.sh stop
 fi
