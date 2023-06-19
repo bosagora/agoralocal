@@ -2,7 +2,7 @@ version: '3.3'
 services:
   elboot:
     container_name: elboot
-    image: bosagora/agora-el-bootnode:agora_v1.10.23-948287
+    image: bosagora/agora-el-bootnode:v1.0.2
     restart: always
     volumes:
       - ../config/el:/config
@@ -29,7 +29,7 @@ services:
 
   node1-1-el:
     container_name: node1-1-el
-    image: bosagora/agora-el-node:agora_v1.10.23-948287
+    image: bosagora/agora-el-node:v1.0.2
     ports:
       - "8645:8545"
     restart: always
@@ -114,7 +114,7 @@ services:
 
   node2-1-el:
     container_name: node2-1-el
-    image: bosagora/agora-el-node:agora_v1.10.23-948287
+    image: bosagora/agora-el-node:v1.0.2
     restart: always
     volumes:
       - ../chain/node2/el:/data
@@ -186,7 +186,7 @@ services:
 
   node3-1-el:
     container_name: node3-1-el
-    image: bosagora/agora-el-node:agora_v1.10.23-948287
+    image: bosagora/agora-el-node:v1.0.2
     restart: always
     volumes:
       - ../chain/node3/el:/data
@@ -259,7 +259,7 @@ services:
 
   node4-1-el:
     container_name: node4-1-el
-    image: bosagora/agora-el-node:agora_v1.10.23-948287
+    image: bosagora/agora-el-node:v1.0.2
     restart: always
     volumes:
       - ../chain/node4/el:/data
@@ -333,7 +333,7 @@ services:
 
   node5-1-el:
     container_name: node5-1-el
-    image: bosagora/agora-el-node:agora_v1.10.23-948287
+    image: bosagora/agora-el-node:v1.0.2
     restart: always
     volumes:
       - ../chain/node5/el:/data
