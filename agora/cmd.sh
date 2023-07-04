@@ -174,7 +174,7 @@ elif [ "$1" = "bls-change-35-37" ]; then
 
     docker run -it --rm \
       -v "$agora_root"/wallet/bls_change/35:/withdrawal \
-      bosagora/agora-deposit-cli:agora_v2.5.0-1839d2 \
+      bosagora/agora-deposit-cli:agora_v2.5.0-f0d7d3 \
       --language=english \
       --non_interactive \
       generate-bls-to-execution-change \
@@ -198,7 +198,7 @@ elif [ "$1" = "bls-change-38" ]; then
 
     docker run -it --rm \
       -v "$agora_root"/wallet/bls_change/38:/withdrawal \
-      bosagora/agora-deposit-cli:agora_v2.5.0-1839d2 \
+      bosagora/agora-deposit-cli:agora_v2.5.0-f0d7d3 \
       --language=english \
       --non_interactive \
       generate-bls-to-execution-change \
@@ -222,7 +222,7 @@ elif [ "$1" = "bls-change-39" ]; then
 
     docker run -it --rm \
       -v "$agora_root"/wallet/bls_change/39:/withdrawal \
-      bosagora/agora-deposit-cli:agora_v2.5.0-1839d2 \
+      bosagora/agora-deposit-cli:agora_v2.5.0-f0d7d3 \
       --language=english \
       --non_interactive \
       generate-bls-to-execution-change \

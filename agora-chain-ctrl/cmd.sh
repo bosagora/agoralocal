@@ -61,7 +61,7 @@ elif [ "$1" = "new-mnemonic" ]; then
 
     docker run -it --rm \
       -v "$agora_root"/validator_keys:/app/validator_keys \
-      bosagora/agora-deposit-cli:agora_v2.5.0-1839d2 \
+      bosagora/agora-deposit-cli:agora_v2.5.0-f0d7d3 \
       --language=english \
       new-mnemonic \
       --chain=devnet
@@ -72,7 +72,7 @@ elif [ "$1" = "existing-mnemonic" ]; then
 
     docker run -it --rm \
       -v "$agora_root"/validator_keys:/app/validator_keys \
-      bosagora/agora-deposit-cli:agora_v2.5.0-1839d2 \
+      bosagora/agora-deposit-cli:agora_v2.5.0-f0d7d3 \
       --language=english \
       existing-mnemonic \
       --chain=devnet
