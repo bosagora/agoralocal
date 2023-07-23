@@ -355,7 +355,7 @@ services:
   node5-2-cl:
     platform: linux/amd64
     container_name: node5-2-cl
-    image: bosagora/agora-cl-node:v2.0.0
+    image: bosagora/agora-cl-node:v2.0.1
     ports:
       - "3650:3500"
       - "4150:4000"
@@ -384,7 +384,7 @@ services:
   node5-3-val:
     platform: linux/amd64
     container_name: node5-3-val
-    image: bosagora/agora-cl-validator:v2.0.0
+    image: bosagora/agora-cl-validator:v2.0.1
     ports:
       - "8151:8081"
     volumes:
