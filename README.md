@@ -71,8 +71,8 @@ The nodes are changed sequentially one by one as follows.
     - bosagora/agora-el-node:v1.0.2 -> bosagora/agora-el-node:v2.0.0
 - agora-cl
     - bosagora/agora-cl-bootnode:v1.0.3
-    - bosagora/agora-cl-node:v1.0.3 -> bosagora/agora-cl-node:v2.0.0
-    - bosagora/agora-cl-validator:v1.0.3 -> bosagora/agora-cl-validator:v2.0.0
+    - bosagora/agora-cl-node:v1.0.3 -> bosagora/agora-cl-node:v2.0.1
+    - bosagora/agora-cl-validator:v1.0.3 -> bosagora/agora-cl-validator:v2.0.1
 
 #### After Step 6
 - agora-el
@@ -81,8 +81,8 @@ The nodes are changed sequentially one by one as follows.
 
 - agora-cl
     - bosagora/agora-cl-bootnode:v1.0.3
-    - bosagora/agora-cl-node:v2.0.0
-    - bosagora/agora-cl-validator:v2.0.0
+    - bosagora/agora-cl-node:v2.0.1
+    - bosagora/agora-cl-validator:v2.0.1
 
 ### Command
 
