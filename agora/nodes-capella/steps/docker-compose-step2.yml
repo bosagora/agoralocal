@@ -333,7 +333,7 @@ services:
 
   node5-1-el:
     container_name: node5-1-el
-    image: bosagora/agora-el-node:v2.0.0
+    image: bosagora/agora-el-node:v2.0.1
     restart: always
     volumes:
       - ../chain/node5/el:/data

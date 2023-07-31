@@ -37,7 +37,7 @@ When 'FAST', the creation period of the block is 5 seconds for agora-el and 5 se
 The Docker image below is used.
 - agora-el  
   - bosagora/agora-el-bootnode:v1.0.2
-  - bosagora/agora-el-node:v2.0.0
+  - bosagora/agora-el-node:v2.0.1
 
 - agora-cl
   - bosagora/agora-cl-bootnode:v1.0.3
@@ -68,7 +68,7 @@ The Docker image below is used.
 The nodes are changed sequentially one by one as follows.
 - agora-el
     - bosagora/agora-el-bootnode:v1.0.2
-    - bosagora/agora-el-node:v1.0.2 -> bosagora/agora-el-node:v2.0.0
+    - bosagora/agora-el-node:v1.0.2 -> bosagora/agora-el-node:v2.0.1
 - agora-cl
     - bosagora/agora-cl-bootnode:v1.0.3
     - bosagora/agora-cl-node:v1.0.3 -> bosagora/agora-cl-node:v2.0.1
@@ -77,7 +77,7 @@ The nodes are changed sequentially one by one as follows.
 #### After Step 6
 - agora-el
     - bosagora/agora-el-bootnode:v1.0.2
-    - bosagora/agora-el-node:v2.0.0
+    - bosagora/agora-el-node:v2.0.1
 
 - agora-cl
     - bosagora/agora-cl-bootnode:v1.0.3

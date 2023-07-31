@@ -29,7 +29,7 @@ services:
 
   node1-1-el:
     container_name: node1-1-el
-    image: bosagora/agora-el-node:v2.0.0
+    image: bosagora/agora-el-node:v2.0.1
     ports:
       - "8645:8545"
     restart: always
@@ -113,7 +113,7 @@ services:
 
   node2-1-el:
     container_name: node2-1-el
-    image: bosagora/agora-el-node:v2.0.0
+    image: bosagora/agora-el-node:v2.0.1
     restart: always
     volumes:
       - ../chain/node2/el:/data
@@ -185,7 +185,7 @@ services:
 
   node3-1-el:
     container_name: node3-1-el
-    image: bosagora/agora-el-node:v2.0.0
+    image: bosagora/agora-el-node:v2.0.1
     restart: always
     volumes:
       - ../chain/node3/el:/data
@@ -258,7 +258,7 @@ services:
 
   node4-1-el:
     container_name: node4-1-el
-    image: bosagora/agora-el-node:v2.0.0
+    image: bosagora/agora-el-node:v2.0.1
     restart: always
     volumes:
       - ../chain/node4/el:/data
@@ -332,7 +332,7 @@ services:
 
   node5-1-el:
     container_name: node5-1-el
-    image: bosagora/agora-el-node:v2.0.0
+    image: bosagora/agora-el-node:v2.0.1
     restart: always
     volumes:
       - ../chain/node5/el:/data
@@ -408,47 +408,6 @@ services:
         ipv4_address: 172.200.0.63
     depends_on:
       - node5-2-cl
-
-  node6-1-el:
-    container_name: node6-1-el
-    image: bosagora/agora-el-node:v2.0.0
-    restart: always
-    volumes:
-      - ../chain/node6/el:/data
-      - ../config/el:/config
-    command:
-      --config=/config/config.toml
-      --datadir=/data
-      --syncmode=full
-    networks:
-      bosagora_network:
-        ipv4_address: 172.200.0.71
-    depends_on:
-      - elboot
-      - node1-1-el
-      - node2-1-el
-      - node3-1-el
-      - node4-1-el
-      - node5-1-el
-
-  node6-2-cl:
-    container_name: node6-2-cl
-    image: bosagora/agora-cl-builder:v6.1.0
-    volumes:
-      - ../chain/node6/cl:/cl
-      - ../chain/node6/el:/el
-      - ../config/cl:/config
-      - ../../../agora-cl:/agora-cl
-      - ../agora-cl-builder/build:/build
-      - bazel-cache:/root/.cache
-    stdin_open: true
-    tty: true
-    networks:
-      bosagora_network:
-        ipv4_address: 172.200.0.72
-    depends_on:
-      - clboot
-      - node6-1-el
 
 networks:
   bosagora_network:
